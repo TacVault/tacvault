@@ -589,7 +589,7 @@ export default function PlateCarriersGuide() {
 
       {/* Disclaimer */}
       <p className="text-xs text-zinc-600 text-center">
-        Prices current as of January 2026. We may earn affiliate commission from links on this page.
+        Prices last verified February 1, 2026. We may earn affiliate commission from links on this page.
       </p>
     </article>
   )
