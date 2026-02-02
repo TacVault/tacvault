@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #09090b;
+  color: #e4e4e7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(245, 158, 11, 0.3);
+  color: #fafafa;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Smooth link underlines */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+@layer components {
+  .prose-tacvault h1 {
+    @apply text-3xl md:text-4xl font-heading font-800 text-zinc-50 mb-4 tracking-tight;
+  }
+  .prose-tacvault h2 {
+    @apply text-2xl md:text-2xl font-heading font-700 text-zinc-100 mt-12 mb-4 tracking-tight;
+  }
+  .prose-tacvault h3 {
+    @apply text-xl font-heading font-600 text-zinc-200 mt-8 mb-3;
+  }
+  .prose-tacvault p {
+    @apply text-zinc-300 leading-relaxed mb-4;
+  }
+  .prose-tacvault strong {
+    @apply text-zinc-100 font-600;
+  }
+  .prose-tacvault a {
+    @apply text-brand-amber hover:text-brand-amber-light transition-colors underline underline-offset-2;
+  }
+}
