@@ -438,7 +438,7 @@ export default function PlateCarriersGuide() {
           You don't need to watch 15 YouTube videos to figure out which plate carrier to buy. We did the research, compared the specs, and broke down what actually matters.
         </p>
         <div className="flex items-center gap-4 text-sm text-zinc-500">
-          <span>Updated Jan 2026</span>
+          <span>Prices last updated: Feb 1, 2026</span>
           <span className="w-1 h-1 bg-zinc-700 rounded-full" />
           <span>12 min read</span>
           <span className="w-1 h-1 bg-zinc-700 rounded-full" />
