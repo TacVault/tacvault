@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import PriceAlertButton from '@/components/PriceAlertButton'
 
 export const metadata = {
   title: 'Best Red Dots Under $300 (2026) — TacVault',
@@ -182,17 +181,8 @@ export default function BestRedDotsPage() {
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
             <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">
+            <a href="https://www.primaryarms.com/holosun-hs507c-x2-pistol-red-dot-sight-2-moa" target="_blank" rel="noopener noreferrer" className="price-btn">
               $299–320
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">OpticsPlanet</span>
-            <a href="#" className="price-btn">
-              $309–330
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
@@ -203,14 +193,6 @@ export default function BestRedDotsPage() {
             <span className="text-text-muted text-sm">$364.99</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Holosun 507C X2"
-          productSlug="holosun-507c-x2"
-          category="red-dots"
-          currentPriceLow={299}
-          currentPriceHigh={350}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -291,25 +273,13 @@ export default function BestRedDotsPage() {
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
             <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">$220–250 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">OpticsPlanet</span>
-            <a href="#" className="price-btn">$230–260 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <a href="https://www.primaryarms.com/holosun-hs407c-x2-pistol-red-dot-sight-2-moa" target="_blank" rel="noopener noreferrer" className="price-btn">$220–250 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">$282.34</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Holosun 407C X2"
-          productSlug="holosun-407c-x2"
-          category="red-dots"
-          currentPriceLow={220}
-          currentPriceHigh={280}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -405,25 +375,13 @@ export default function BestRedDotsPage() {
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
             <span className="price-retailer">Palmetto State Armory</span>
-            <a href="#" className="price-btn">$99–129 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">$110–130 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <a href="https://palmettostatearmory.com/sig-sauer-romeo5-1x20mm-red-dot-sight-black-r52001.html" target="_blank" rel="noopener noreferrer" className="price-btn">$99–129 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">$139.99</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Sig Sauer Romeo5"
-          productSlug="sig-romeo5"
-          category="red-dots"
-          currentPriceLow={100}
-          currentPriceHigh={130}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -506,26 +464,14 @@ export default function BestRedDotsPage() {
         <div className="price-section">
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
-            <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">$150–180 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
             <span className="price-retailer">Swampfox Direct</span>
-            <a href="#" className="price-btn">$179–219 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <a href="https://www.swampfoxoptics.com/kingslayer" target="_blank" rel="noopener noreferrer" className="price-btn">$179–219 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">$219.99</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Swampfox Kingslayer"
-          productSlug="swampfox-kingslayer"
-          category="red-dots"
-          currentPriceLow={150}
-          currentPriceHigh={180}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -607,25 +553,13 @@ export default function BestRedDotsPage() {
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
             <span className="price-retailer">Palmetto State Armory</span>
-            <a href="#" className="price-btn">$140–160 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">$150–170 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <a href="https://palmettostatearmory.com/sig-sauer-romeo-5-gen-ii-red-dot-black-sor5101.html" target="_blank" rel="noopener noreferrer" className="price-btn">$140–160 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">~$180</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Sig Romeo5 Gen II"
-          productSlug="sig-romeo5-gen2"
-          category="red-dots"
-          currentPriceLow={140}
-          currentPriceHigh={170}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -718,26 +652,14 @@ export default function BestRedDotsPage() {
         <div className="price-section">
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
-            <span className="price-retailer">Primary Arms</span>
-            <a href="#" className="price-btn">$150–180 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">Amazon</span>
-            <a href="#" className="price-btn">$160–200 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <span className="price-retailer">Palmetto State Armory</span>
+            <a href="https://palmettostatearmory.com/vortex-sparc-ii-ar-2-moa-red-dot-sight-spc-ar2.html" target="_blank" rel="noopener noreferrer" className="price-btn">$150–180 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">$279.99</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Vortex SPARC AR"
-          productSlug="vortex-sparc-ar"
-          category="red-dots"
-          currentPriceLow={150}
-          currentPriceHigh={200}
-        />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -834,25 +756,13 @@ export default function BestRedDotsPage() {
           <div className="specs-label">Current Prices</div>
           <div className="price-row">
             <span className="price-retailer">Amazon</span>
-            <a href="#" className="price-btn">$50–70 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">OpticsPlanet</span>
-            <a href="#" className="price-btn">$60–80 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <a href="https://www.amazon.com/dp/B00200E0HM" target="_blank" rel="noopener noreferrer" className="price-btn">$50–70 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
           <div className="price-row">
             <span className="price-retailer">MSRP</span>
             <span className="text-text-muted text-sm">$119.95</span>
           </div>
         </div>
-
-        <PriceAlertButton
-          productName="Bushnell TRS-25"
-          productSlug="bushnell-trs25"
-          category="red-dots"
-          currentPriceLow={50}
-          currentPriceHigh={80}
-        />
       </section>
 
       <div className="divider my-10"><div className="divider-line"></div></div>
