@@ -85,7 +85,7 @@ export default function Home() {
 
         <div className="space-y-4">
           {/* Red Dots Guide */}
-          <Link href="/guides/best-red-dots-under-300" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg card group">
+          <Link href="/guides/best-red-dots-under-300" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg group">
             <div className="flex justify-between items-start gap-4">
               <div>
                 <span className="inline-block px-3 py-1 bg-[#0e1011] border-2 border-[#5c6370] rounded font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-silver mb-3">Red Dots</span>
@@ -110,7 +110,7 @@ export default function Home() {
           </Link>
 
           {/* Plate Carriers Guide */}
-          <Link href="/guides/best-plate-carriers-2026" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg card group">
+          <Link href="/guides/best-plate-carriers-2026" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg group">
             <div className="flex justify-between items-start gap-4">
               <div>
                 <span className="inline-block px-3 py-1 bg-[#0e1011] border-2 border-[#5c6370] rounded font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-silver mb-3">Plate Carriers</span>
