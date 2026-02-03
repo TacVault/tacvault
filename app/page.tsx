@@ -42,7 +42,7 @@ export default function Home() {
       {/* Features */}
       <section className="max-w-container mx-auto px-6 py-16">
         <div className="grid md:grid-cols-3 gap-4">
-          <div className="p-6 bg-gradient-to-br from-[#5c6370] to-[#3a3d42] border border-[#7a8290] rounded-lg hover:border-[#5c6370] transition-all group">
+          <div className="p-6 bg-[#0e1011] border-2 border-[#5c6370] rounded-lg hover:border-[#5c6370] transition-all group">
             <div className="w-10 h-10 rounded-lg bg-[rgba(139,157,170,0.08)] border border-border flex items-center justify-center text-silver mb-4">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
@@ -52,7 +52,7 @@ export default function Home() {
             <p className="text-sm text-text-secondary">Real specs, real prices, real pros and cons. No sponsored fluff.</p>
           </div>
 
-          <div className="p-6 bg-gradient-to-br from-[#5c6370] to-[#3a3d42] border border-[#7a8290] rounded-lg hover:border-[#5c6370] transition-all group">
+          <div className="p-6 bg-[#0e1011] border-2 border-[#5c6370] rounded-lg hover:border-[#5c6370] transition-all group">
             <div className="w-10 h-10 rounded-lg bg-[rgba(139,157,170,0.08)] border border-border flex items-center justify-center text-silver mb-4">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
@@ -62,7 +62,7 @@ export default function Home() {
             <p className="text-sm text-text-secondary">Same product, prices from multiple retailers. Find the best deal.</p>
           </div>
 
-          <div className="p-6 bg-gradient-to-br from-[#5c6370] to-[#3a3d42] border border-[#7a8290] rounded-lg hover:border-[#5c6370] transition-all group">
+          <div className="p-6 bg-[#0e1011] border-2 border-[#5c6370] rounded-lg hover:border-[#5c6370] transition-all group">
             <div className="w-10 h-10 rounded-lg bg-[rgba(139,157,170,0.08)] border border-border flex items-center justify-center text-silver mb-4">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
