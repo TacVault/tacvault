@@ -32,7 +32,7 @@ export default function Home() {
                 <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
               </svg>
             </Link>
-            <Link href="#alerts" className="btn-secondary">
+            <Link href="#alerts" className="px-6 py-3 bg-[#0e1011] border-2 border-[#5c6370] rounded-md font-tactical font-bold text-sm tracking-[1.5px] uppercase text-silver hover:border-[#a8b2bc] hover:text-white transition-all">
               Get Deal Alerts
             </Link>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
           <Link href="/guides/best-red-dots-under-300" className="block card group">
             <div className="flex justify-between items-start gap-4">
               <div>
-                <span className="badge mb-3">Red Dots</span>
+                <span className="inline-block px-3 py-1 bg-[#0e1011] border-2 border-[#5c6370] rounded font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-silver mb-3">Red Dots</span>
                 <h3 className="font-tactical font-bold text-2xl text-text-primary mb-2 group-hover:text-silver-light transition-colors">
                   Best Red Dots Under $300
                 </h3>
@@ -101,7 +101,7 @@ export default function Home() {
                   <span>7 products compared</span>
                 </div>
               </div>
-              <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center text-text-muted group-hover:text-silver group-hover:border-gunmetal transition-all flex-shrink-0">
+              <div className="w-10 h-10 border-2 border-[#5c6370] rounded-lg bg-[#0e1011] flex items-center justify-center text-text-muted group-hover:text-silver group-hover:border-gunmetal transition-all flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
@@ -113,7 +113,7 @@ export default function Home() {
           <Link href="/guides/best-plate-carriers-2026" className="block card group">
             <div className="flex justify-between items-start gap-4">
               <div>
-                <span className="badge mb-3">Plate Carriers</span>
+                <span className="inline-block px-3 py-1 bg-[#0e1011] border-2 border-[#5c6370] rounded font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-silver mb-3">Plate Carriers</span>
                 <h3 className="font-tactical font-bold text-2xl text-text-primary mb-2 group-hover:text-silver-light transition-colors">
                   Best Plate Carriers 2026
                 </h3>
@@ -126,7 +126,7 @@ export default function Home() {
                   <span>7 products compared</span>
                 </div>
               </div>
-              <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center text-text-muted group-hover:text-silver group-hover:border-gunmetal transition-all flex-shrink-0">
+              <div className="w-10 h-10 border-2 border-[#5c6370] rounded-lg bg-[#0e1011] flex items-center justify-center text-text-muted group-hover:text-silver group-hover:border-gunmetal transition-all flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
