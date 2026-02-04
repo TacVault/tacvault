@@ -15,13 +15,14 @@ const guides = [
     desc: 'Crye JPC 2.0, Ferro Slickster, Defense Mechanisms MEPC, and more compared.',
     live: true,
   },
-  {
+ {
     title: 'Best Red Dots Under $300',
+    href: '/guides/best-red-dots-under-300',
     category: 'Optics',
-    products: null,
-    date: 'Coming Soon',
-    desc: 'Holosun, Sig Sauer, Trijicon, and more compared.',
-    live: false,
+    products: 7,
+    date: 'Feb 2026',
+    desc: 'Holosun 507C, Sig Romeo5, Vortex SPARC AR, and more compared.',
+    live: true,
   },
   {
     title: 'Best IFAKs 2026',
