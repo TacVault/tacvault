@@ -9,13 +9,23 @@ export default function BestRedDotsPage() {
   return (
     <div className="max-w-container mx-auto px-6 py-12">
       {/* Page Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <div className="section-label">Optics Guide</div>
         <h1 className="font-tactical font-bold text-4xl md:text-5xl text-text-primary mb-4">
           Best Red Dots Under $300
         </h1>
-        <p className="text-text-muted text-sm">
-          Last Updated: February 2, 2026 • 7 products compared • Specs verified against manufacturer websites
+        <p className="text-text-muted text-sm mb-4">
+          Last Updated: February 3, 2026 • 7 products compared • Specs verified against manufacturer websites
+        </p>
+        <p className="text-text-secondary text-sm italic">
+          We use real-world street prices, not MSRP. Pricing fluctuates by retailer, color, and availability — but all optics here typically sell around or below $300.
+        </p>
+      </div>
+
+      {/* Quick Answer */}
+      <div className="quick-answer">
+        <p>
+          <strong className="text-text-primary">Quick answer:</strong> For rifles, the <Link href="#sig-romeo5" className="text-silver hover:text-chrome">Sig Romeo5</Link> ($100–130) is the best value — proven reliability, shake awake, and 40,000-hour battery life for the price of a nice dinner. For pistols, the <Link href="#holosun-507c" className="text-silver hover:text-chrome">Holosun 507C X2</Link> ($299–350) is worth every penny for the multi-reticle system and solar backup.
         </p>
       </div>
 
@@ -29,14 +39,24 @@ export default function BestRedDotsPage() {
         </p>
       </div>
 
-      {/* Quick Picks Table */}
-      <div className="specs-box mb-10">
-        <div className="specs-label">Quick Picks</div>
+      {/* Why These 7 */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">Why These 7?</div>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          We excluded optics that failed documented durability tests, lack modern auto-on features, use proprietary footprints with limited holster/mount support, or have consistent QC complaints across multiple sources. This isn't a list of everything available — it's a list of what's worth buying.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mt-3">
+          <strong className="text-text-primary">If an optic isn't listed here, it's because it failed one of those criteria — not because we didn't know about it.</strong>
+        </p>
+      </div>
+
+      {/* Quick Picks - Pistol */}
+      <div className="specs-box mb-4">
+        <div className="specs-label">Quick Picks — Pistol Red Dots</div>
         <div className="overflow-x-auto">
           <table className="quick-picks-table">
             <thead>
               <tr>
-                <th>Rank</th>
                 <th>Product</th>
                 <th>Badge</th>
                 <th>Price</th>
@@ -45,49 +65,61 @@ export default function BestRedDotsPage() {
             </thead>
             <tbody>
               <tr>
-                <td className="text-text-muted">#1</td>
                 <td><Link href="#holosun-507c" className="text-silver hover:text-chrome">Holosun 507C X2</Link></td>
-                <td><span className="badge badge-best">Best Overall Pistol</span></td>
+                <td><span className="badge badge-best">Best Overall</span></td>
                 <td className="text-text-primary">$299–350</td>
                 <td>Serious CCW / duty pistol</td>
               </tr>
               <tr>
-                <td className="text-text-muted">#2</td>
                 <td><Link href="#holosun-407c" className="text-silver hover:text-chrome">Holosun 407C X2</Link></td>
-                <td><span className="badge">Best Value Pistol</span></td>
+                <td><span className="badge">Best Value</span></td>
                 <td className="text-text-primary">$220–280</td>
-                <td>Budget Holosun buyers</td>
+                <td>Experienced shooters who want simple dot</td>
               </tr>
               <tr>
-                <td className="text-text-muted">#3</td>
+                <td><Link href="#swampfox-kingslayer" className="text-silver hover:text-chrome">Swampfox Kingslayer</Link></td>
+                <td><span className="badge">Best Entry-Level</span></td>
+                <td className="text-text-primary">$150–180</td>
+                <td>Trying pistol red dots for the first time</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Quick Picks - Rifle */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">Quick Picks — Rifle Red Dots</div>
+        <div className="overflow-x-auto">
+          <table className="quick-picks-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Badge</th>
+                <th>Price</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
                 <td><Link href="#sig-romeo5" className="text-silver hover:text-chrome">Sig Romeo5</Link></td>
-                <td><span className="badge badge-best">Best AR-15 Optic</span></td>
+                <td><span className="badge badge-best">Best Overall</span></td>
                 <td className="text-text-primary">$100–130</td>
                 <td>First AR / budget builds</td>
               </tr>
               <tr>
-                <td className="text-text-muted">#4</td>
-                <td><Link href="#swampfox-kingslayer" className="text-silver hover:text-chrome">Swampfox Kingslayer</Link></td>
-                <td><span className="badge">Best Entry Pistol</span></td>
-                <td className="text-text-primary">$150–180</td>
-                <td>Trying pistol red dots</td>
-              </tr>
-              <tr>
-                <td className="text-text-muted">#5</td>
                 <td><Link href="#sig-romeo5-gen2" className="text-silver hover:text-chrome">Sig Romeo5 Gen II</Link></td>
-                <td><span className="badge">Best AR-15 Upgrade</span></td>
+                <td><span className="badge">Best Upgrade</span></td>
                 <td className="text-text-primary">$140–170</td>
                 <td>Precision-focused builds</td>
               </tr>
               <tr>
-                <td className="text-text-muted">#6</td>
                 <td><Link href="#vortex-sparc-ar" className="text-silver hover:text-chrome">Vortex SPARC AR</Link></td>
                 <td><span className="badge">Best Warranty</span></td>
                 <td className="text-text-primary">$150–200</td>
                 <td>Warranty-conscious buyers</td>
               </tr>
               <tr>
-                <td className="text-text-muted">#7</td>
                 <td><Link href="#bushnell-trs25" className="text-silver hover:text-chrome">Bushnell TRS-25</Link></td>
                 <td><span className="badge">Best Ultra-Budget</span></td>
                 <td className="text-text-primary">$50–80</td>
@@ -98,17 +130,137 @@ export default function BestRedDotsPage() {
         </div>
       </div>
 
+      {/* Condensed Comparison Table */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">At a Glance</div>
+        <div className="overflow-x-auto">
+          <table className="comparison-table text-sm">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Type</th>
+                <th>Weight</th>
+                <th>Battery</th>
+                <th>Shake Awake</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-silver">507C X2</td>
+                <td>Pistol</td>
+                <td>1.5 oz</td>
+                <td>50,000 hrs</td>
+                <td className="text-status-green">✓</td>
+                <td>$299–350</td>
+              </tr>
+              <tr>
+                <td className="text-silver">407C X2</td>
+                <td>Pistol</td>
+                <td>1.5 oz</td>
+                <td>50,000 hrs</td>
+                <td className="text-status-green">✓</td>
+                <td>$220–280</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Kingslayer</td>
+                <td>Pistol</td>
+                <td>1.0–1.3 oz</td>
+                <td>1,500 hrs</td>
+                <td className="text-status-red">✗</td>
+                <td>$150–180</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Romeo5</td>
+                <td>Rifle</td>
+                <td>5.1 oz</td>
+                <td>40,000 hrs</td>
+                <td className="text-status-green">✓</td>
+                <td>$100–130</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Romeo5 Gen II</td>
+                <td>Rifle</td>
+                <td>5.5 oz</td>
+                <td>40,000 hrs</td>
+                <td className="text-status-green">✓</td>
+                <td>$140–170</td>
+              </tr>
+              <tr>
+                <td className="text-silver">SPARC AR</td>
+                <td>Rifle</td>
+                <td>8.6 oz</td>
+                <td>50,000 hrs</td>
+                <td className="text-status-red">✗</td>
+                <td>$150–200</td>
+              </tr>
+              <tr>
+                <td className="text-silver">TRS-25</td>
+                <td>Rifle</td>
+                <td>4 oz</td>
+                <td>5,000 hrs</td>
+                <td className="text-status-red">✗</td>
+                <td>$50–80</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* What to Look For */}
+      <div className="specs-box mb-10">
+        <div className="specs-label">What to Look For</div>
+        <div className="what-to-look-for">
+          <div className="criteria-item">
+            <strong className="text-text-primary">Reticle Size</strong> — 2 MOA dots are precise for accuracy. 3+ MOA dots are faster to acquire but less precise at distance. Circle-dot reticles help beginners find the dot faster.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Battery Life</strong> — 50,000 hours means 5+ years without changing. Under 5,000 hours needs regular management. Always check manufacturer specs, not retailer listings.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Shake Awake</strong> — Motion-activated on/off. Critical for carry and home defense — without it, your optic may be off when you grab the gun.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Footprint</strong> — Pistols: RMR pattern fits most slide cuts. Rifles: Aimpoint Micro/T2 pattern is standard. Wrong footprint = wrong optic.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Solar Backup</strong> — Runs on ambient light if battery dies. Nice insurance for carry guns. Not essential for range toys.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Side-Loading Battery</strong> — Change battery without removing optic or losing zero. Top-loading batteries require re-zeroing after every change.
+          </div>
+        </div>
+      </div>
+
       <div className="divider mb-10"><div className="divider-line"></div></div>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #1: Holosun 507C X2 */}
+      {/* PISTOL RED DOTS SECTION */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <div className="mb-6">
+        <h2 className="font-tactical font-bold text-2xl text-text-primary mb-2">Pistol Red Dots</h2>
+        <p className="text-text-secondary text-sm">Compact optics designed for slide-mounted carry and duty use.</p>
+      </div>
+
+      {/* Compatibility Note - Pistol */}
+      <div className="warning-box mb-8">
+        <svg className="warning-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <div>
+          <div className="warning-title">Compatibility Note</div>
+          <div className="warning-text">All pistol optics listed here use the RMR footprint unless otherwise noted. Always confirm your slide cut before ordering — "RMR cut" and "RMR pattern" are the same thing.</div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Holosun 507C X2 */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="holosun-507c" className="product-card">
         <div className="product-header">
           <div>
             <span className="badge badge-best mb-3">Best Overall Pistol</span>
             <div className="mt-3">
-              <span className="product-rank">#1</span>
               <span className="product-name">Holosun 507C X2</span>
             </div>
           </div>
@@ -116,7 +268,7 @@ export default function BestRedDotsPage() {
         </div>
 
         <p className="product-desc">
-          The 507C is what most instructors recommend for concealed carry, and for good reason. It's the only sub-$300 pistol optic with the Multi-Reticle System — switch between a 2 MOA dot, 32 MOA circle, or both without losing zero. The circle helps new shooters find the dot faster under stress.
+          The 507C is commonly recommended in pistol red-dot courses for concealed carry, and for good reason. It's the only sub-$300 pistol optic with the Multi-Reticle System — switch between a 2 MOA dot, 32 MOA circle, or both without losing zero. The circle helps new shooters find the dot faster under stress.
         </p>
         <p className="product-desc">
           Solar Failsafe means even if your battery dies, the optic keeps working from ambient light. Shake Awake means it's always ready when you draw but not draining battery in your safe. Lock Mode prevents accidental brightness changes. At 1.5 oz and IP67 waterproof, this is as close to "buy once, never think about it again" as pistol optics get under $300.
@@ -188,22 +340,22 @@ export default function BestRedDotsPage() {
               </svg>
             </a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$364.99</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #2: Holosun 407C X2 */}
+      {/* PRODUCT: Holosun 407C X2 */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="holosun-407c" className="product-card">
         <div className="product-header">
           <div>
             <span className="badge mb-3">Best Value Pistol</span>
             <div className="mt-3">
-              <span className="product-rank">#2</span>
               <span className="product-name">Holosun 407C X2</span>
             </div>
           </div>
@@ -275,22 +427,133 @@ export default function BestRedDotsPage() {
             <span className="price-retailer">Primary Arms</span>
             <a href="https://www.primaryarms.com/holosun-hs407c-x2-pistol-red-dot-sight-2-moa" target="_blank" rel="noopener noreferrer" className="price-btn">$220–250 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$282.34</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #3: Sig Romeo5 */}
+      {/* PRODUCT: Swampfox Kingslayer */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="swampfox-kingslayer" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Entry-Level Pistol</span>
+            <div className="mt-3">
+              <span className="product-name">Swampfox Kingslayer</span>
+            </div>
+          </div>
+          <div className="product-price">$150–180</div>
+        </div>
+
+        <p className="product-desc">
+          The Kingslayer is how you try pistol red dots without committing $300. At half the price of a Holosun, you get an RMR-footprint optic that fits most slide cuts, a 3 MOA dot (or optional circle-dot), and an 800G impact rating.
+        </p>
+        <p className="product-desc">
+          The trade-offs are real: 1,500-hour battery life vs. Holosun's 50,000, and a 4-hour auto-shutoff that some shooters hate. No shake awake means you're either manually managing the optic or accepting it'll shut off. But for a range gun or a "see if I like pistol dots" trial, it's hard to beat the value.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">1.0–1.3 oz</span></div>
+          <div className="spec-row"><span className="spec-label">Reticle</span><span className="spec-value">3 MOA dot (or circle-dot)</span></div>
+          <div className="spec-row"><span className="spec-label">Battery</span><span className="spec-value">CR1632 (side-loading)</span></div>
+          <div className="spec-row"><span className="spec-label">Battery Life</span><span className="spec-value">1,500 hours</span></div>
+          <div className="spec-row"><span className="spec-label">Waterproof</span><span className="spec-value">IPX-7</span></div>
+          <div className="spec-row"><span className="spec-label">Auto Shutoff</span><span className="spec-value">4 hours</span></div>
+          <div className="spec-row"><span className="spec-label">Impact Rating</span><span className="spec-value">800G</span></div>
+          <div className="spec-row"><span className="spec-label">Footprint</span><span className="spec-value">RMR pattern</span></div>
+          <div className="spec-row"><span className="spec-label">Warranty</span><span className="spec-value">50,000 Round Guarantee</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Half the price of Holosun</li>
+              <li><span className="icon-pro">✓</span> RMR footprint — fits most slide cuts</li>
+              <li><span className="icon-pro">✓</span> Side-loading battery</li>
+              <li><span className="icon-pro">✓</span> 50,000 round guarantee</li>
+              <li><span className="icon-pro">✓</span> Circle-dot reticle option available</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Only 1,500 hour battery life</li>
+              <li><span className="icon-con">✗</span> 4-hour auto-shutoff — will be off when you grab it</li>
+              <li><span className="icon-con">✗</span> No shake awake</li>
+              <li><span className="icon-con">✗</span> 3 MOA dot is larger than Holosun's 2 MOA</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Range guns, trying pistol red dots before committing to Holosun, backup optics, guns that live in the safe.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Concealed carry (no shake awake + 4hr shutoff = bad combo)</li>
+            <li><span className="icon-con">✗</span> Home defense (will likely be off when you need it)</li>
+            <li><span className="icon-con">✗</span> Anyone who hates managing batteries</li>
+            <li><span className="icon-con">✗</span> Shooters who want a 2 MOA dot</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Swampfox Direct</span>
+            <a href="https://www.swampfoxoptics.com/kingslayer" target="_blank" rel="noopener noreferrer" className="price-btn">$179–219 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
+        </div>
+      </section>
+
+      <div className="divider my-10"><div className="divider-line"></div></div>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* RIFLE RED DOTS SECTION */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <div className="mb-6">
+        <h2 className="font-tactical font-bold text-2xl text-text-primary mb-2">Rifle Red Dots</h2>
+        <p className="text-text-secondary text-sm">Full-size optics for AR-15s, shotguns, and other long guns.</p>
+      </div>
+
+      {/* Compatibility Note - Rifle */}
+      <div className="warning-box mb-8">
+        <svg className="warning-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <div>
+          <div className="warning-title">Compatibility Note</div>
+          <div className="warning-text">All rifle optics listed here use standard Picatinny mounts. The Romeo5 and SPARC AR use Aimpoint Micro-pattern mounts for aftermarket options like Scalarworks or Unity.</div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Sig Romeo5 */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="sig-romeo5" className="product-card">
         <div className="product-header">
           <div>
-            <span className="badge badge-best mb-3">Best Budget AR-15 Red Dot</span>
+            <span className="badge badge-best mb-3">Best Overall Rifle</span>
             <div className="mt-3">
-              <span className="product-rank">#3</span>
               <span className="product-name">Sig Sauer Romeo5</span>
             </div>
           </div>
@@ -377,112 +640,22 @@ export default function BestRedDotsPage() {
             <span className="price-retailer">Palmetto State Armory</span>
             <a href="https://palmettostatearmory.com/sig-sauer-romeo5-1x20mm-red-dot-sight-black-r52001.html" target="_blank" rel="noopener noreferrer" className="price-btn">$99–129 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$139.99</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #4: Swampfox Kingslayer */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="swampfox-kingslayer" className="product-card">
-        <div className="product-header">
-          <div>
-            <span className="badge mb-3">Best Entry-Level Pistol</span>
-            <div className="mt-3">
-              <span className="product-rank">#4</span>
-              <span className="product-name">Swampfox Kingslayer</span>
-            </div>
-          </div>
-          <div className="product-price">$150–180</div>
-        </div>
-
-        <p className="product-desc">
-          The Kingslayer is how you try pistol red dots without committing $300. At half the price of a Holosun, you get an RMR-footprint optic that fits most slide cuts, a 3 MOA dot (or optional circle-dot), and an 800G impact rating.
-        </p>
-        <p className="product-desc">
-          The trade-offs are real: 1,500-hour battery life vs. Holosun's 50,000, and a 4-hour auto-shutoff that some shooters hate. No shake awake means you're either manually managing the optic or accepting it'll shut off. But for a range gun or a "see if I like pistol dots" trial, it's hard to beat the value.
-        </p>
-
-        {/* Specs */}
-        <div className="specs-box">
-          <div className="specs-label">Specs</div>
-          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">1.0–1.3 oz</span></div>
-          <div className="spec-row"><span className="spec-label">Reticle</span><span className="spec-value">3 MOA dot (or circle-dot)</span></div>
-          <div className="spec-row"><span className="spec-label">Battery</span><span className="spec-value">CR1632 (side-loading)</span></div>
-          <div className="spec-row"><span className="spec-label">Battery Life</span><span className="spec-value">1,500 hours</span></div>
-          <div className="spec-row"><span className="spec-label">Waterproof</span><span className="spec-value">IPX-7</span></div>
-          <div className="spec-row"><span className="spec-label">Auto Shutoff</span><span className="spec-value">4 hours</span></div>
-          <div className="spec-row"><span className="spec-label">Impact Rating</span><span className="spec-value">800G</span></div>
-          <div className="spec-row"><span className="spec-label">Footprint</span><span className="spec-value">RMR pattern</span></div>
-          <div className="spec-row"><span className="spec-label">Warranty</span><span className="spec-value">50,000 Round Guarantee</span></div>
-        </div>
-
-        {/* Pros / Cons */}
-        <div className="pros-cons">
-          <div className="pros-box">
-            <div className="pros-label">Pros</div>
-            <ul className="pc-list">
-              <li><span className="icon-pro">✓</span> Half the price of Holosun</li>
-              <li><span className="icon-pro">✓</span> RMR footprint — fits most slide cuts</li>
-              <li><span className="icon-pro">✓</span> Side-loading battery</li>
-              <li><span className="icon-pro">✓</span> 50,000 round guarantee</li>
-              <li><span className="icon-pro">✓</span> Circle-dot reticle option available</li>
-            </ul>
-          </div>
-          <div className="cons-box">
-            <div className="cons-label">Cons</div>
-            <ul className="pc-list">
-              <li><span className="icon-con">✗</span> Only 1,500 hour battery life</li>
-              <li><span className="icon-con">✗</span> 4-hour auto-shutoff — will be off when you grab it</li>
-              <li><span className="icon-con">✗</span> No shake awake</li>
-              <li><span className="icon-con">✗</span> 3 MOA dot is larger than Holosun's 2 MOA</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Best For */}
-        <div className="best-for-box">
-          <div className="best-for-label">Best For</div>
-          <p className="best-for-text">Range guns, trying pistol red dots before committing to Holosun, backup optics, guns that live in the safe.</p>
-        </div>
-
-        {/* Who Should NOT Buy */}
-        <div className="not-for-box">
-          <div className="not-for-label">Who Should NOT Buy This</div>
-          <ul className="pc-list">
-            <li><span className="icon-con">✗</span> Concealed carry (no shake awake + 4hr shutoff = bad combo)</li>
-            <li><span className="icon-con">✗</span> Home defense (will likely be off when you need it)</li>
-            <li><span className="icon-con">✗</span> Anyone who hates managing batteries</li>
-            <li><span className="icon-con">✗</span> Shooters who want a 2 MOA dot</li>
-          </ul>
-        </div>
-
-        {/* Prices */}
-        <div className="price-section">
-          <div className="specs-label">Current Prices</div>
-          <div className="price-row">
-            <span className="price-retailer">Swampfox Direct</span>
-            <a href="https://www.swampfoxoptics.com/kingslayer" target="_blank" rel="noopener noreferrer" className="price-btn">$179–219 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$219.99</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #5: Sig Romeo5 Gen II */}
+      {/* PRODUCT: Sig Romeo5 Gen II */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="sig-romeo5-gen2" className="product-card">
         <div className="product-header">
           <div>
-            <span className="badge mb-3">Best AR-15 Upgrade</span>
+            <span className="badge mb-3">Best Upgrade Pick</span>
             <div className="mt-3">
-              <span className="product-rank">#5</span>
               <span className="product-name">Sig Sauer Romeo5 Gen II</span>
             </div>
           </div>
@@ -555,22 +728,22 @@ export default function BestRedDotsPage() {
             <span className="price-retailer">Palmetto State Armory</span>
             <a href="https://palmettostatearmory.com/sig-sauer-romeo-5-gen-ii-red-dot-black-sor5101.html" target="_blank" rel="noopener noreferrer" className="price-btn">$140–160 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">~$180</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #6: Vortex SPARC AR */}
+      {/* PRODUCT: Vortex SPARC AR */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="vortex-sparc-ar" className="product-card">
         <div className="product-header">
           <div>
             <span className="badge mb-3">Best Warranty</span>
             <div className="mt-3">
-              <span className="product-rank">#6</span>
               <span className="product-name">Vortex SPARC AR</span>
             </div>
           </div>
@@ -655,22 +828,22 @@ export default function BestRedDotsPage() {
             <span className="price-retailer">Palmetto State Armory</span>
             <a href="https://palmettostatearmory.com/vortex-sparc-ii-ar-2-moa-red-dot-sight-spc-ar2.html" target="_blank" rel="noopener noreferrer" className="price-btn">$150–180 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$279.99</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* PRODUCT #7: Bushnell TRS-25 */}
+      {/* PRODUCT: Bushnell TRS-25 */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section id="bushnell-trs25" className="product-card">
         <div className="product-header">
           <div>
             <span className="badge mb-3">Best Ultra-Budget</span>
             <div className="mt-3">
-              <span className="product-rank">#7</span>
               <span className="product-name">Bushnell TRS-25</span>
             </div>
           </div>
@@ -758,20 +931,21 @@ export default function BestRedDotsPage() {
             <span className="price-retailer">Amazon</span>
             <a href="https://www.amazon.com/dp/B00200E0HM" target="_blank" rel="noopener noreferrer" className="price-btn">$50–70 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
           </div>
-          <div className="price-row">
-            <span className="price-retailer">MSRP</span>
-            <span className="text-text-muted text-sm">$119.95</span>
-          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this optic →</span></p>
         </div>
       </section>
 
       <div className="divider my-10"><div className="divider-line"></div></div>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* COMPARISON MATRIX */}
+      {/* FULL COMPARISON MATRIX */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section className="mb-10">
-        <div className="section-label">Feature Comparison</div>
+        <div className="section-label">Full Feature Comparison</div>
         <div className="overflow-x-auto">
           <table className="comparison-table">
             <thead>
@@ -779,9 +953,10 @@ export default function BestRedDotsPage() {
                 <th>Feature</th>
                 <th>507C X2</th>
                 <th>407C X2</th>
-                <th>Romeo5</th>
-                <th>SPARC AR</th>
                 <th>Kingslayer</th>
+                <th>Romeo5</th>
+                <th>Romeo5 II</th>
+                <th>SPARC AR</th>
                 <th>TRS-25</th>
               </tr>
             </thead>
@@ -790,90 +965,100 @@ export default function BestRedDotsPage() {
                 <td className="text-text-muted">Type</td>
                 <td>Pistol</td>
                 <td>Pistol</td>
-                <td>Rifle</td>
-                <td>Rifle</td>
                 <td>Pistol</td>
+                <td>Rifle</td>
+                <td>Rifle</td>
+                <td>Rifle</td>
                 <td>Rifle</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Weight</td>
                 <td>1.5 oz</td>
                 <td>1.5 oz</td>
-                <td>5.1 oz</td>
-                <td>8.6 oz</td>
                 <td>1.0–1.3 oz</td>
+                <td>5.1 oz</td>
+                <td>5.5 oz</td>
+                <td>8.6 oz</td>
                 <td>4 oz</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Battery Life</td>
                 <td>50,000 hrs</td>
                 <td>50,000 hrs</td>
+                <td>1,500 hrs</td>
+                <td>40,000 hrs</td>
                 <td>40,000 hrs</td>
                 <td>50,000 hrs</td>
-                <td>1,500 hrs</td>
                 <td>5,000 hrs</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Shake Awake</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Solar Backup</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Circle Reticle</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
                 <td>Optional</td>
-                <td className="x">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">NV Compatible</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Side Battery</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">RMR Footprint</td>
-                <td className="check">✓</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
-                <td className="x">✗</td>
-                <td className="check">✓</td>
-                <td className="x">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
               </tr>
               <tr>
                 <td className="text-text-muted">Street Price</td>
                 <td>$299–350</td>
                 <td>$220–280</td>
-                <td>$100–130</td>
-                <td>$150–200</td>
                 <td>$150–180</td>
+                <td>$100–130</td>
+                <td>$140–170</td>
+                <td>$150–200</td>
                 <td>$50–80</td>
               </tr>
             </tbody>
@@ -947,7 +1132,7 @@ export default function BestRedDotsPage() {
 
       {/* Last Updated */}
       <p className="text-text-muted text-xs mt-8 text-center">
-        Prices last updated: February 2, 2026 • Specs verified against official manufacturer websites
+        Prices last updated: February 3, 2026 • Specs verified against official manufacturer websites
       </p>
     </div>
   )

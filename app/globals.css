@@ -642,3 +642,7 @@ body {
   color: var(--text-muted);
   line-height: 1.6;
 }
+
+  /* Status colors */
+.text-status-green { color: #4a9c6d; }
+.text-status-red { color: #9c4a4a; }
