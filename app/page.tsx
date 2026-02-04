@@ -88,7 +88,7 @@ export default function Home() {
 
         <div className="space-y-4">
           {/* Red Dots Guide */}
-          <Link href="/guides/best-red-dots-under-300" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg group">
+          <Link href="/guides/best-red-dots-under-300" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg p-6 group">
             <div className="flex justify-between items-start gap-4">
               <div>
                 <span className="inline-block font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-text-muted mb-3">Red Dots</span>
