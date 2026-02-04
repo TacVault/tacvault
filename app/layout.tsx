@@ -58,6 +58,12 @@ export default function RootLayout({
                   Guides
                 </Link>
                 <Link 
+  href="/products" 
+  className="font-tactical font-semibold text-sm tracking-[1.5px] uppercase text-text-secondary hover:text-silver-light transition-colors no-underline hidden sm:block"
+>
+  Products
+</Link>
+                <Link 
                   href="#alerts" 
                   className="inline-flex items-center gap-2 px-4 py-2 border border-border-light rounded-md font-tactical font-semibold text-[13px] tracking-[1.5px] uppercase text-silver hover:border-gunmetal-light hover:bg-[rgba(139,157,170,0.15)] transition-all no-underline"
                 >
