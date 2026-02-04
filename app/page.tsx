@@ -113,7 +113,7 @@ export default function Home() {
           </Link>
 
           {/* Plate Carriers Guide */}
-          <Link href="/guides/best-plate-carriers-2026" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg group">
+          <Link href="/guides/best-plate-carriers-2026" className="block bg-[#0e1011] border-2 border-[#5c6370] rounded-lg p-6 group">
             <div className="flex justify-between items-start gap-4">
               <div>
                 <span className="inline-block font-tactical font-semibold text-xs tracking-[1.5px] uppercase text-text-muted mb-3">Plate Carriers</span>
@@ -129,7 +129,7 @@ export default function Home() {
                   <span>7 products compared</span>
                 </div>
               </div>
-             <div className="w-10 h-10 rounded-lg flex items-center justify-center text-text-muted group-hover:text-silver transition-all flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center text-text-muted group-hover:text-silver transition-all flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
