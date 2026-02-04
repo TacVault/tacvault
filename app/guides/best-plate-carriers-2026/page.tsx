@@ -1,596 +1,1040 @@
-import type { Metadata } from 'next'
+import Link from 'next/link'
 
-export const metadata: Metadata = {
-  title: 'Best Plate Carriers 2026 — Compared & Ranked | TacVault',
-  description: 'Compare the 7 best plate carriers of 2026. Crye JPC 2.0, Ferro Slickster, Defense Mechanisms MEPC and more. Real specs, current prices, honest reviews.',
-  openGraph: {
-    title: 'Best Plate Carriers 2026 — Compared & Ranked',
-    description: 'Compare the 7 best plate carriers of 2026. Real specs, current prices, honest reviews.',
-  },
+export const metadata = {
+  title: 'Best Plate Carriers 2026 — TacVault',
+  description: '7 plate carriers compared with verified specs. Crye JPC 2.0, Ferro Slickster, Defense Mechanisms MEPC, and more. No sponsored rankings.',
 }
 
-/* ─── data ─── */
-
-const quickPicks = [
-  { cat: 'Best Overall', pick: 'Crye JPC 2.0', price: '$250–290', anchor: 'crye-jpc-2' },
-  { cat: 'Best Low-Profile', pick: 'Ferro Slickster', price: '$165', anchor: 'ferro-slickster' },
-  { cat: 'Best Value', pick: 'Defense Mechanisms MEPC', price: '$155–175', anchor: 'dm-mepc' },
-  { cat: 'Best Modular', pick: 'Spiritus LV-119', price: '$350+', anchor: 'spiritus-lv119' },
-  { cat: 'Best Minimalist', pick: 'T.REX Arms AC1.5', price: '~$185', anchor: 'trex-ac1' },
-  { cat: 'Best Budget', pick: 'Condor Sentry', price: '$50–60', anchor: 'condor-sentry' },
-  { cat: 'Best for Heavy Loads', pick: 'Shellback Banshee Elite 2.0', price: '$280–320', anchor: 'shellback-banshee' },
-]
-
-interface Carrier {
-  id: string
-  rank: number
-  name: string
-  badge: string
-  weight: string
-  material: string
-  sizes: string
-  colors: string
-  madeIn: string
-  price: string
-  pros: string[]
-  cons: string[]
-  bestFor: string
-  desc: string[]
-  prices: { retailer: string; price: string; url: string }[]
-  compatibility: string
-}
-
-const carriers: Carrier[] = [
-  {
-    id: 'crye-jpc-2',
-    rank: 1,
-    name: 'Crye Precision JPC 2.0',
-    badge: 'Best Overall',
-    weight: '1.1 lbs',
-    material: '500D Cordura',
-    sizes: 'S, M, L, XL (sized by plate)',
-    colors: 'MultiCam, Ranger Green, Coyote, Black, Khaki, Grey',
-    madeIn: 'USA',
-    price: '$250–290',
-    pros: [
-      'Lightest quality carrier on the market',
-      'Combat-proven by US special operations',
-      'Skeletal Cummerbund — mount pouches inside and outside',
-      'Compatible with all AVS front flaps and accessories',
-      '2-step emergency doffing',
-      'Excellent ventilation',
-    ],
-    cons: [
-      'Premium price point',
-      'Plate insertion takes practice',
-      'Limited storage without accessories',
-      'Often out of stock in popular colors',
-    ],
-    bestFor: 'Anyone who wants the best. If you train seriously or want proven gear — this is it.',
-    desc: [
-      'The JPC 2.0 is what special operations units actually use. At just over 1 pound, it\'s remarkably light while offering real modularity through the Skeletal Cummerbund system. You can mount pouches inside and outside the cummerbund, and the entire AVS accessory ecosystem is compatible.',
-      'The patented Integrated Attachment System sheds unnecessary weight and bulk while improving ventilation. All AVS detachable front flaps work with the JPC 2.0, giving you mag pouches, admin panels, and medical setups without permanent modifications.',
-    ],
-    prices: [
-      { retailer: 'Bravo Company USA', price: '$250', url: 'https://bravocompanyusa.com' },
-      { retailer: 'Crye Precision', price: '$279', url: 'https://cryeprecision.com' },
-      { retailer: 'RMA Defense', price: '$279', url: 'https://rmadefense.com' },
-      { retailer: 'Tactical Distributors', price: '$279', url: 'https://tacticaldistributors.com' },
-    ],
-    compatibility: 'SAPI, ESAPI, XSAPI, swimmer cut, shooter cut. Size carrier to match plate size. 10×12 = Medium.',
-  },
-  {
-    id: 'ferro-slickster',
-    rank: 2,
-    name: 'Ferro Concepts Slickster',
-    badge: 'Best Low-Profile',
-    weight: '0.9 lbs (402g)',
-    material: '500D Cordura',
-    sizes: 'S, M, L (sized by plate)',
-    colors: 'Black, Coyote, Ranger Green, MultiCam, MCB, Wolf Grey',
-    madeIn: 'USA',
-    price: '$165',
-    pros: [
-      'Incredibly light and low-profile',
-      'ADAPT system allows massive customization',
-      'Elastic cummerbund holds mags, TQs, radios',
-      'Scales from covert to full kit',
-      'Great under jackets or in vehicles',
-    ],
-    cons: [
-      'Not designed for heavy loadouts (6 lb plate max)',
-      'Stock availability can be inconsistent',
-      'Requires ADAPT accessories for full functionality',
-      'Base model is truly minimal',
-    ],
-    bestFor: 'Concealed carry under clothing, vehicle use, security details, or a scalable platform you build over time.',
-    desc: [
-      'The Slickster is the go-to for low-visibility work. At just 0.9 lbs, it virtually disappears under a jacket. But the magic is in the ADAPT system — you can scale from covert to overt by swapping cummerbunds, adding MOLLE panels, and attaching front flaps.',
-      'The Carry Elastic Cummerbund holds 5.56 and 7.62 mags, smoke, flashbangs, radios, and tourniquets. Laser-cut slots on the chest accept ADAPT flaps and most chest rigs using ITW QASM buckles.',
-    ],
-    prices: [
-      { retailer: 'Ferro Concepts', price: '$165', url: 'https://ferroconcepts.com' },
-      { retailer: 'SKD Tactical', price: '$165', url: 'https://skdtac.com' },
-      { retailer: 'OP Tactical', price: '$165', url: 'https://optactical.com' },
-    ],
-    compatibility: 'SAPI, ESAPI, XSAPI, standalone Level 4, swimmer & shooter cut. Max plate thickness: 1″. Size carrier to plate.',
-  },
-  {
-    id: 'dm-mepc',
-    rank: 3,
-    name: 'Defense Mechanisms MEPC',
-    badge: 'Best Value',
-    weight: '1.5 lbs (with cummerbund)',
-    material: '500D Cordura',
-    sizes: 'S, M, L, XL (sized by plate)',
-    colors: 'Black, Ranger Green, Coyote, MultiCam (all variants), Woodland, Wolf Grey',
-    madeIn: 'USA (Winona, Minnesota)',
-    price: '$155–175',
-    pros: [
-      'Excellent build quality for the price',
-      'Made entirely in USA (Berry Compliant)',
-      'Cable pass-through for comms',
-      'MOLLE or slick rear bag options',
-      'Multiple cummerbund choices',
-      'Great color selection',
-    ],
-    cons: [
-      'Plate bags and cummerbund sold separately (~$300 complete)',
-      '4–8 week lead time on some configs',
-      'Less name recognition than Crye / Spiritus',
-      'Heavier than minimalist options',
-    ],
-    bestFor: 'Budget-conscious buyers who want quality USA-made gear. LEO, prepared citizens, or anyone who doesn\'t want to pay Crye prices.',
-    desc: [
-      'The MEPC offers premium features at a mid-range price. Handmade in Minnesota with real attention to detail — cable routing for comms, zippered admin pocket, laser-cut MOLLE, and overlapping shoulder straps for a wide range of fit adjustment.',
-      'At $155–175 for plate bags, it competes with carriers twice its price on build quality. The 500D Cordura construction keeps weight reasonable while staying durable. Available in slick and MOLLE rear configurations.',
-    ],
-    prices: [
-      { retailer: 'Defense Mechanisms', price: '$155–175', url: 'https://defensemechanisms.com' },
-      { retailer: 'Apex Armor Solutions (kits)', price: '$260–350', url: 'https://apexarmorsolutions.com' },
-    ],
-    compatibility: 'Up to 1.2″ thick plate + backer combo. SAPI sizing. Medium fits 10×12 commercial plates.',
-  },
-  {
-    id: 'trex-ac1',
-    rank: 4,
-    name: 'T.REX Arms AC1.5',
-    badge: 'Best Minimalist Overt',
-    weight: '1.45 lbs (23.2 oz)',
-    material: '500D with Tweave lining',
-    sizes: 'S, M, L (sized by plate)',
-    colors: 'Black, Coyote, M81 Woodland, MultiCam, Ranger Green',
-    madeIn: 'USA',
-    price: '~$185',
-    pros: [
-      'MOLLE row placard interface — no hardware needed',
-      'Reversible cummerbund with multiple cell options',
-      'Tweave lining for comfort and breathability',
-      'Angled shoulder straps with thicker padding',
-      'Solid price for USA-made quality',
-    ],
-    cons: [
-      'No internal velcro loop fields',
-      'Limited to T.REX ecosystem for some accessories',
-      'Plate thickness limited to ~1.1″',
-      'Mixed reviews on initial shoulder comfort',
-    ],
-    bestFor: 'Civilian prepared citizens who want a quality USA-made carrier for training and emergency use.',
-    desc: [
-      'The AC1.5 is the updated version of T.REX\'s popular AC1. It adds a MOLLE row placard interface for hardware-free attachment of select placards, a reversible cummerbund, and improved padding with Tweave lining fabric for better comfort on longer wear.',
-      'The angled shoulder straps distribute weight more naturally. Available in five colors and sized by plate. A clean, no-nonsense overt carrier at a fair price point.',
-    ],
-    prices: [
-      { retailer: 'T.REX Arms', price: '~$185', url: 'https://trex-arms.com' },
-    ],
-    compatibility: 'SAPI, ESAPI, XSAPI, swimmer cut, shooter cut. Plates should not exceed ~1.1″ thickness.',
-  },
-  {
-    id: 'spiritus-lv119',
-    rank: 5,
-    name: 'Spiritus Systems LV-119',
-    badge: 'Best Modular System',
-    weight: '~1.5 lbs (configured)',
-    material: '500D Cordura',
-    sizes: 'S, M, L, XL (sized by plate)',
-    colors: 'Black, Coyote, RG, MultiCam, MCB, M81, Wolf Grey + more',
-    madeIn: 'USA',
-    price: '$350–450 (complete)',
-    pros: [
-      'Ultimate modularity — configure exactly what you need',
-      'Mix covert and overt components freely',
-      'Huge color selection',
-      'First Spear TUBES compatible',
-      'QASM buckle placard system',
-      'Excellent build quality',
-    ],
-    cons: [
-      'Component pricing adds up fast',
-      'Confusing for first-time buyers',
-      'Cummerbund attachment can be fiddly',
-      'Frequently out of stock',
-    ],
-    bestFor: 'Experienced users who know exactly what they want. Military, LEO, or serious enthusiasts who value configurability.',
-    desc: [
-      'The LV-119 isn\'t a plate carrier — it\'s a system. You buy the front plate bag, rear plate bag, cummerbund, and shoulder covers separately. This means infinite configuration: covert to overt, MOLLE to slick, standard to OTB (over the beach).',
-      'Every component is interchangeable. You can pair a covert front bag with an overt rear, swap cummerbunds for different missions, and integrate back panels, placards, and other accessories. The trade-off is complexity and cost.',
-    ],
-    prices: [
-      { retailer: 'Spiritus Systems (front bag)', price: '$104–130', url: 'https://spiritussystems.com' },
-      { retailer: 'Spiritus Systems (rear bag)', price: '$104–130', url: 'https://spiritussystems.com' },
-      { retailer: 'OP Tactical (front bag)', price: '$105–130', url: 'https://optactical.com' },
-    ],
-    compatibility: 'SAPI cut standard. Fits other cuts within listed dimensions. Check Spiritus sizing guide.',
-  },
-  {
-    id: 'condor-sentry',
-    rank: 6,
-    name: 'Condor Sentry',
-    badge: 'Best Budget',
-    weight: '~2 lbs',
-    material: 'Nylon',
-    sizes: 'S/M, L/XL (sized by plate)',
-    colors: 'Black, Coyote, OD Green, MultiCam',
-    madeIn: 'Overseas',
-    price: '$50–60',
-    pros: [
-      'Under $60',
-      'Gets the job done for training',
-      'Accepts standard 10×12 plates',
-      'Decent shoulder padding',
-      'Good entry point to plate carriers',
-    ],
-    cons: [
-      'Won\'t last like premium options',
-      'Heavier than quality carriers',
-      'Durability concerns for hard use',
-      'You\'ll want to upgrade eventually',
-    ],
-    bestFor: 'First-time buyers, range training, fitness / weighted vest use, or backup carriers.',
-    desc: [
-      'Not everyone has $300 for a plate carrier. The Condor Sentry runs about $55 and does the basics right — padded adjustable shoulder straps, slick front, and accepts standard plates.',
-      'It won\'t last forever and it\'s heavier than quality carriers, but it gets you training with plates while you save for something better. Think of it as a proving ground.',
-    ],
-    prices: [
-      { retailer: 'Condor Outdoor', price: '$55–65', url: 'https://condoroutdoor.com' },
-      { retailer: 'Amazon', price: '$50–60', url: 'https://amazon.com' },
-    ],
-    compatibility: 'Medium/Large ESAPI plates up to 10.25″×13.25″.',
-  },
-  {
-    id: 'shellback-banshee',
-    rank: 7,
-    name: 'Shellback Banshee Elite 2.0',
-    badge: 'Best for Heavy Loads',
-    weight: '~3 lbs',
-    material: '1000D Cordura',
-    sizes: 'S, M, L, XL',
-    colors: 'Black, Coyote, Ranger Green, MultiCam',
-    madeIn: 'USA',
-    price: '$280–320',
-    pros: [
-      '3D padded mesh interior for all-day comfort',
-      'Hypalon shoulders for comms / hydration routing',
-      'Built for heavy combat loads',
-      'Accepts side plates',
-      'Quick-release system',
-      'Soft armor compatible',
-    ],
-    cons: [
-      'Heavy compared to minimalist carriers',
-      'Not low-profile at all',
-      'Overkill for most civilian use cases',
-      'Higher price point',
-    ],
-    bestFor: 'Military, law enforcement, security details, or anyone running a heavy loadout for extended periods.',
-    desc: [
-      'When you need to carry a lot of gear for extended periods, padding matters. The Banshee Elite 2.0 is built for LE and military duty use with 3D padded internal mesh, Hypalon shoulder construction for routing comms and hydration, and full MOLLE coverage.',
-      'It supports 10×12 plates, accepts side plates, and includes a quick-release system. The 1000D Cordura construction is heavier but significantly more abrasion-resistant for hard daily use.',
-    ],
-    prices: [
-      { retailer: 'Shellback Tactical', price: '$300–320', url: 'https://shellbacktactical.com' },
-      { retailer: 'US Patriot Tactical', price: '$280–300', url: 'https://uspatriottactical.com' },
-    ],
-    compatibility: '10×12 standard. Side plate pouches included. Soft armor compatible.',
-  },
-]
-
-/* ─── components ─── */
-
-function Badge({ text }: { text: string }) {
+export default function BestPlateCarriersPage() {
   return (
-    <span className="inline-block px-2.5 py-0.5 bg-brand-amber/10 text-brand-amber text-xs font-semibold rounded-md border border-brand-amber/20">
-      {text}
-    </span>
-  )
-}
+    <div className="max-w-container mx-auto px-6 py-12">
+      {/* Page Header */}
+      <div className="mb-6">
+        <div className="section-label">Body Armor Guide</div>
+        <h1 className="font-tactical font-bold text-4xl md:text-5xl text-text-primary mb-4">
+          Best Plate Carriers 2026
+        </h1>
+        <p className="text-text-muted text-sm mb-4">
+          Last Updated: February 3, 2026 • 7 products compared • Specs verified against manufacturer websites
+        </p>
+      </div>
 
-function SpecRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between py-2.5 border-b border-zinc-800/50 last:border-0">
-      <span className="text-sm text-zinc-500">{label}</span>
-      <span className="text-sm text-zinc-200 text-right max-w-[60%]">{value}</span>
-    </div>
-  )
-}
+      {/* Quick Answer */}
+      <div className="quick-answer">
+        <p>
+          <strong className="text-text-primary">Quick answer:</strong> The <Link href="#crye-jpc-2" className="text-silver hover:text-chrome">Crye JPC 2.0</Link> ($250–290) is the gold standard — combat-proven, lightweight, and modular enough for any mission. If budget is tighter, the <Link href="#defense-mechanisms-mepc" className="text-silver hover:text-chrome">Defense Mechanisms MEPC</Link> ($155–175) gives you 90% of the performance at 60% of the price.
+        </p>
+      </div>
 
-function CarrierCard({ carrier }: { carrier: Carrier }) {
-  return (
-    <section id={carrier.id} className="scroll-mt-24">
-      <div className="p-6 sm:p-8 rounded-xl bg-zinc-900/40 border border-zinc-800/60">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-6">
+      {/* Intro */}
+      <div className="guide-intro">
+        <p>
+          A plate carrier is the foundation of any serious loadout. Get it wrong and you're either uncomfortable, slow, or unable to mount the gear you need. The market ranges from $50 airsoft-grade junk to $500+ duty rigs — and price doesn't always correlate with quality.
+        </p>
+        <p>
+          <strong className="text-text-primary">This guide exists to help you pick the right carrier for your actual use case.</strong> We verified every spec against official manufacturer websites, noted where marketing claims don't match reality, and tell you exactly who should — and shouldn't — buy each carrier.
+        </p>
+      </div>
+
+      {/* Why These 7 */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">Why These 7?</div>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          We excluded carriers with documented stitching failures, proprietary plate sizing that limits your options, poor weight distribution that causes hotspots, or consistent QC complaints across multiple sources. We also skipped "tactical fashion" brands that prioritize looks over function.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mt-3">
+          <strong className="text-text-primary">If a carrier isn't listed here, it's because it failed one of those criteria — not because we didn't know about it.</strong>
+        </p>
+      </div>
+
+      {/* Quick Picks */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">Quick Picks</div>
+        <div className="overflow-x-auto">
+          <table className="quick-picks-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Badge</th>
+                <th>Price</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><Link href="#crye-jpc-2" className="text-silver hover:text-chrome">Crye Precision JPC 2.0</Link></td>
+                <td><span className="badge badge-best">Best Overall</span></td>
+                <td className="text-text-primary">$250–290</td>
+                <td>All-around use, the default choice</td>
+              </tr>
+              <tr>
+                <td><Link href="#ferro-slickster" className="text-silver hover:text-chrome">Ferro Concepts Slickster</Link></td>
+                <td><span className="badge">Best Low-Profile</span></td>
+                <td className="text-text-primary">$165</td>
+                <td>Concealment, minimalist setups</td>
+              </tr>
+              <tr>
+                <td><Link href="#defense-mechanisms-mepc" className="text-silver hover:text-chrome">Defense Mechanisms MEPC</Link></td>
+                <td><span className="badge">Best Value</span></td>
+                <td className="text-text-primary">$155–175</td>
+                <td>Budget-conscious buyers wanting quality</td>
+              </tr>
+              <tr>
+                <td><Link href="#trex-ac1" className="text-silver hover:text-chrome">T.REX Arms AC1</Link></td>
+                <td><span className="badge">Best Minimalist Overt</span></td>
+                <td className="text-text-primary">$240–250</td>
+                <td>Simple, clean overt carrier</td>
+              </tr>
+              <tr>
+                <td><Link href="#spiritus-lv119" className="text-silver hover:text-chrome">Spiritus Systems LV-119</Link></td>
+                <td><span className="badge">Best Modular System</span></td>
+                <td className="text-text-primary">$350–450</td>
+                <td>Maximum configurability</td>
+              </tr>
+              <tr>
+                <td><Link href="#shellback-banshee" className="text-silver hover:text-chrome">Shellback Banshee Elite 2.0</Link></td>
+                <td><span className="badge">Best for Heavy Loads</span></td>
+                <td className="text-text-primary">$280–350</td>
+                <td>Extended wear, heavy kit</td>
+              </tr>
+              <tr>
+                <td><Link href="#condor-sentry" className="text-silver hover:text-chrome">Condor Sentry</Link></td>
+                <td><span className="badge">Best Budget</span></td>
+                <td className="text-text-primary">$45–60</td>
+                <td>Airsoft, training, trying out gear</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* At a Glance */}
+      <div className="specs-box mb-8">
+        <div className="specs-label">At a Glance</div>
+        <div className="overflow-x-auto">
+          <table className="comparison-table text-sm">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Weight</th>
+                <th>Material</th>
+                <th>Made In</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-silver">JPC 2.0</td>
+                <td>1.1 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$250–290</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Slickster</td>
+                <td>0.9 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$165</td>
+              </tr>
+              <tr>
+                <td className="text-silver">MEPC</td>
+                <td>1.0 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$155–175</td>
+              </tr>
+              <tr>
+                <td className="text-silver">AC1</td>
+                <td>1.2 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$240–250</td>
+              </tr>
+              <tr>
+                <td className="text-silver">LV-119</td>
+                <td>~1.5 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$350–450</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Banshee Elite 2.0</td>
+                <td>3.0 lbs</td>
+                <td>500D Cordura</td>
+                <td>USA</td>
+                <td>$280–350</td>
+              </tr>
+              <tr>
+                <td className="text-silver">Condor Sentry</td>
+                <td>1.8 lbs</td>
+                <td>Nylon</td>
+                <td>China</td>
+                <td>$45–60</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* What to Look For */}
+      <div className="specs-box mb-10">
+        <div className="specs-label">What to Look For</div>
+        <div className="what-to-look-for">
+          <div className="criteria-item">
+            <strong className="text-text-primary">Plate Compatibility</strong> — Most carriers fit SAPI/ESAPI or "swimmer cut" plates. Verify your plates match the carrier's sizing. "Medium SAPI" and "10x12" are close but not identical.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Weight</strong> — Carrier weight matters when you add 8-15 lbs of plates. A 3 lb carrier vs 1 lb carrier is noticeable after hours of wear.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Cummerbund Style</strong> — Skeletal cummerbunds allow airflow and side mounting. Tube/quick-release systems allow fast doffing. Elastic is simpler but less adjustable.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">MOLLE/Attachment</strong> — Laser-cut MOLLE is lighter and lower-profile. Traditional sewn MOLLE is more durable. Some carriers have both.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Slick vs Overt</strong> — Slick carriers hide under clothing. Overt carriers have external MOLLE for pouches. Some carriers (like the Slickster) can convert between both.
+          </div>
+          <div className="criteria-item">
+            <strong className="text-text-primary">Made in USA</strong> — Berry Amendment compliance matters for military/LEO. For civilians, USA-made typically means better QC and easier warranty service.
+          </div>
+        </div>
+      </div>
+
+      <div className="divider mb-10"><div className="divider-line"></div></div>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Crye Precision JPC 2.0 */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="crye-jpc-2" className="product-card">
+        <div className="product-header">
           <div>
-            <Badge text={carrier.badge} />
-            <h3 className="font-heading text-2xl font-bold text-zinc-50 mt-3">
-              <span className="text-zinc-500 font-semibold text-lg mr-2">#{carrier.rank}</span>
-              {carrier.name}
-            </h3>
+            <span className="badge badge-best mb-3">Best Overall</span>
+            <div className="mt-3">
+              <span className="product-name">Crye Precision JPC 2.0</span>
+            </div>
           </div>
-          <div className="text-right shrink-0">
-            <span className="font-heading text-2xl font-bold text-brand-amber">{carrier.price}</span>
-          </div>
+          <div className="product-price">$250–290</div>
         </div>
 
-        {/* Description */}
-        <div className="mb-6 space-y-3">
-          {carrier.desc.map((p, i) => (
-            <p key={i} className="text-zinc-400 leading-relaxed text-[15px]">{p}</p>
-          ))}
-        </div>
+        <p className="product-desc">
+          The JPC 2.0 is what US special operations units actually wear. At just over 1 pound, it's remarkably light while offering real modularity through the Skeletal Cummerbund system — you can mount pouches on the inside and outside of the cummerbund, maximizing real estate without bulk.
+        </p>
+        <p className="product-desc">
+          The zip-on back panel allows you to add a hydration carrier, flat pack, or zip-on panel without permanent modification. The integrated admin pouch on the front keeps small items accessible. Two-band emergency doffing gets you out of the carrier in seconds. This is the carrier everything else is compared against.
+        </p>
 
         {/* Specs */}
-        <div className="bg-zinc-950/50 rounded-lg p-4 mb-6">
-          <h4 className="font-heading text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-2">Specs</h4>
-          <SpecRow label="Weight" value={carrier.weight} />
-          <SpecRow label="Material" value={carrier.material} />
-          <SpecRow label="Sizes" value={carrier.sizes} />
-          <SpecRow label="Colors" value={carrier.colors} />
-          <SpecRow label="Made In" value={carrier.madeIn} />
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">1.1 lbs (Medium)</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">S, M, L, XL (SAPI)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Skeletal (included)</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">MultiCam, Coyote, Ranger Green, Black, more</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+          <div className="spec-row"><span className="spec-label">Berry Compliant</span><span className="spec-value">Yes</span></div>
         </div>
 
         {/* Pros / Cons */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-6">
-          <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-lg p-4">
-            <h4 className="font-heading text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-3">Pros</h4>
-            <ul className="space-y-2">
-              {carrier.pros.map((p, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-zinc-300">
-                  <span className="text-emerald-400 mt-0.5 shrink-0">✓</span>
-                  {p}
-                </li>
-              ))}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Combat-proven by US special operations</li>
+              <li><span className="icon-pro">✓</span> Lightest quality carrier on the market (1.1 lbs)</li>
+              <li><span className="icon-pro">✓</span> Skeletal Cummerbund — mount pouches inside and outside</li>
+              <li><span className="icon-pro">✓</span> Zip-on back panel compatibility</li>
+              <li><span className="icon-pro">✓</span> Two-band emergency doffing</li>
+              <li><span className="icon-pro">✓</span> Integrated admin pouch</li>
             </ul>
           </div>
-          <div className="bg-red-500/5 border border-red-500/10 rounded-lg p-4">
-            <h4 className="font-heading text-xs uppercase tracking-widest text-red-400 font-semibold mb-3">Cons</h4>
-            <ul className="space-y-2">
-              {carrier.cons.map((c, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-zinc-300">
-                  <span className="text-red-400 mt-0.5 shrink-0">✗</span>
-                  {c}
-                </li>
-              ))}
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Premium price point</li>
+              <li><span className="icon-con">✗</span> Plate insertion takes practice</li>
+              <li><span className="icon-con">✗</span> Limited built-in storage without accessories</li>
+              <li><span className="icon-con">✗</span> Often out of stock in popular colors</li>
             </ul>
           </div>
         </div>
 
         {/* Best For */}
-        <div className="bg-brand-amber/5 border border-brand-amber/10 rounded-lg p-4 mb-6">
-          <h4 className="font-heading text-xs uppercase tracking-widest text-brand-amber font-semibold mb-1">Best For</h4>
-          <p className="text-sm text-zinc-300">{carrier.bestFor}</p>
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Anyone who wants the gold standard. Works for everything from range days to professional use. If you can only own one carrier, this is it.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Budget under $200 (get the MEPC instead)</li>
+            <li><span className="icon-con">✗</span> Need maximum concealment (get the Slickster)</li>
+            <li><span className="icon-con">✗</span> Airsoft/casual use only (overkill — get Condor)</li>
+            <li><span className="icon-con">✗</span> Want integrated magazine pouches (JPC is modular, not built-in)</li>
+          </ul>
         </div>
 
         {/* Prices */}
-        <div className="mb-4">
-          <h4 className="font-heading text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-3">Current Prices</h4>
-          <div className="space-y-2">
-            {carrier.prices.map((p, i) => (
-              <div key={i} className="flex items-center justify-between py-2 px-3 rounded-lg bg-zinc-950/50 border border-zinc-800/40 hover:border-zinc-700/60 transition-colors">
-                <span className="text-sm text-zinc-300">{p.retailer}</span>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-amber/10 text-brand-amber text-sm font-semibold rounded-md hover:bg-brand-amber/20 transition-colors"
-                >
-                  {p.price}
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Compatibility */}
-        <div>
-          <h4 className="font-heading text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-1">Plate Compatibility</h4>
-          <p className="text-sm text-zinc-400">{carrier.compatibility}</p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── page ─── */
-
-export default function PlateCarriersGuide() {
-  return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-zinc-600 mb-8">
-        <a href="/" className="hover:text-zinc-400 transition-colors">Home</a>
-        <span>/</span>
-        <a href="/guides" className="hover:text-zinc-400 transition-colors">Guides</a>
-        <span>/</span>
-        <span className="text-zinc-400">Plate Carriers</span>
-      </nav>
-
-      {/* Title */}
-      <header className="mb-10">
-        <Badge text="Plate Carriers" />
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-50 tracking-tight mt-4 mb-4">
-          Best Plate Carriers 2026
-        </h1>
-        <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl mb-4">
-          You don't need to watch 15 YouTube videos to figure out which plate carrier to buy. We did the research, compared the specs, and broke down what actually matters.
-        </p>
-        <div className="flex items-center gap-4 text-sm text-zinc-500">
-          <span>Prices last updated: Feb 1, 2026</span>
-          <span className="w-1 h-1 bg-zinc-700 rounded-full" />
-          <span>12 min read</span>
-          <span className="w-1 h-1 bg-zinc-700 rounded-full" />
-          <span>7 products</span>
-        </div>
-      </header>
-
-      {/* Quick Answer */}
-      <div className="p-5 rounded-xl bg-brand-amber/5 border border-brand-amber/15 mb-10">
-        <p className="text-[15px] text-zinc-200 leading-relaxed">
-          <strong className="text-brand-amber">Quick answer:</strong> For most people, the{' '}
-          <a href="#crye-jpc-2" className="text-brand-amber underline underline-offset-2 hover:text-brand-amber-light transition-colors font-semibold">
-            Crye Precision JPC 2.0
-          </a>{' '}
-          ($250–290) is the best overall plate carrier — lightweight, proven, and infinitely customizable. On a budget? The{' '}
-          <a href="#condor-sentry" className="text-brand-amber underline underline-offset-2 hover:text-brand-amber-light transition-colors font-semibold">
-            Condor Sentry
-          </a>{' '}
-          (~$55) gets you started without breaking the bank.
-        </p>
-      </div>
-
-      {/* Quick Picks Table */}
-      <section className="mb-14">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-4">Quick Picks</h2>
-        <div className="overflow-x-auto -mx-4 sm:mx-0">
-          <div className="min-w-[540px] px-4 sm:px-0">
-            <div className="bg-zinc-900/50 rounded-xl border border-zinc-800/60 overflow-hidden">
-              {/* Header */}
-              <div className="grid grid-cols-[1fr_1.4fr_0.8fr] gap-4 px-4 py-3 bg-zinc-800/30 border-b border-zinc-800/50">
-                <span className="text-xs font-heading font-semibold text-zinc-500 uppercase tracking-wider">Category</span>
-                <span className="text-xs font-heading font-semibold text-zinc-500 uppercase tracking-wider">Pick</span>
-                <span className="text-xs font-heading font-semibold text-zinc-500 uppercase tracking-wider text-right">Price</span>
-              </div>
-              {/* Rows */}
-              {quickPicks.map((qp, i) => (
-                <a
-                  key={i}
-                  href={`#${qp.anchor}`}
-                  className="grid grid-cols-[1fr_1.4fr_0.8fr] gap-4 px-4 py-3 border-b border-zinc-800/30 last:border-0 hover:bg-zinc-800/20 transition-colors group"
-                >
-                  <span className="text-sm text-zinc-400">{qp.cat}</span>
-                  <span className="text-sm text-zinc-100 group-hover:text-brand-amber transition-colors font-medium">{qp.pick}</span>
-                  <span className="text-sm text-zinc-300 text-right font-mono">{qp.price}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What to Look For */}
-      <section className="mb-14">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-4">What to Look For</h2>
-        <div className="space-y-4 text-[15px] text-zinc-400 leading-relaxed">
-          <p>
-            <strong className="text-zinc-200">Weight</strong> — Lighter carriers mean less fatigue. The JPC 2.0 weighs just over 1 lb. Budget carriers can hit 2–3 lbs before plates.
-          </p>
-          <p>
-            <strong className="text-zinc-200">Plate Compatibility</strong> — Carriers are sized by plate, not body. If you have 10×12 plates, you need a medium carrier. Know your plate cut: SAPI, ESAPI, swimmer, shooter.
-          </p>
-          <p>
-            <strong className="text-zinc-200">Material</strong> — 500D Cordura is the sweet spot for weight and durability. 1000D is tougher but heavier. Budget carriers often skimp here.
-          </p>
-          <p>
-            <strong className="text-zinc-200">Cummerbund Style</strong> — Elastic is lighter and moves with you. MOLLE cummerbunds let you mount pouches but add bulk.
-          </p>
-          <p>
-            <strong className="text-zinc-200">Modularity</strong> — Can you add placards, back panels, side plates later? Some carriers are complete systems; others are closed ecosystems.
-          </p>
-        </div>
-      </section>
-
-      {/* Carriers */}
-      <section className="space-y-8 mb-14">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-2">The Carriers</h2>
-        {carriers.map((c) => (
-          <CarrierCard key={c.id} carrier={c} />
-        ))}
-      </section>
-
-      {/* How to Choose */}
-      <section className="mb-14">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-4">How to Choose</h2>
-        <div className="bg-zinc-900/40 rounded-xl border border-zinc-800/60 overflow-hidden">
-          {[
-            { need: 'You want the best, period', pick: 'Crye JPC 2.0', anchor: 'crye-jpc-2' },
-            { need: 'You want concealable under clothing', pick: 'Ferro Slickster', anchor: 'ferro-slickster' },
-            { need: 'You want quality but have a budget', pick: 'Defense Mechanisms MEPC', anchor: 'dm-mepc' },
-            { need: 'You\'re just getting started', pick: 'Condor Sentry (then upgrade)', anchor: 'condor-sentry' },
-            { need: 'You want ultimate modularity', pick: 'Spiritus LV-119', anchor: 'spiritus-lv119' },
-            { need: 'You\'re carrying heavy loads all day', pick: 'Shellback Banshee Elite 2.0', anchor: 'shellback-banshee' },
-          ].map((row, i) => (
-            <a
-              key={i}
-              href={`#${row.anchor}`}
-              className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-800/30 last:border-0 hover:bg-zinc-800/20 transition-colors group"
-            >
-              <span className="text-sm text-zinc-400">{row.need}</span>
-              <span className="text-sm text-brand-amber font-semibold group-hover:text-brand-amber-light transition-colors">
-                {row.pick} →
-              </span>
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Bravo Company USA</span>
+            <a href="https://bravocompanyusa.com/crye-precision-jpc-2-0/" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $250
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
             </a>
-          ))}
+          </div>
+          <div className="price-row">
+            <span className="price-retailer">Crye Precision</span>
+            <a href="https://cryeprecision.com/ProductDetail/blc0640002_jpc-20" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $279
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="mb-14">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-4">Common Questions</h2>
-        <div className="space-y-4">
-          {[
-            {
-              q: 'Can I use steel plates in any carrier?',
-              a: 'Technically yes, but steel plates are heavier and can damage lighter carriers over time. Most carriers are designed for ceramic or UHMWPE plates.',
-            },
-            {
-              q: 'What size do I need?',
-              a: 'Carrier size = plate size, NOT your body or shirt size. If you have 10×12 plates, get a medium carrier. Always check the manufacturer\'s size chart.',
-            },
-            {
-              q: 'Do I need side plates?',
-              a: 'For most civilian uses, no. Side plates add weight and bulk. Focus on good front and back coverage first.',
-            },
-            {
-              q: 'Minimalist vs. full-featured?',
-              a: 'Start minimal. You can always add pouches and accessories. It\'s harder to strip down a bulky carrier.',
-            },
-          ].map((faq, i) => (
-            <div key={i} className="p-4 rounded-lg bg-zinc-900/30 border border-zinc-800/40">
-              <h3 className="font-heading font-semibold text-zinc-200 text-sm mb-1.5">{faq.q}</h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">{faq.a}</p>
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Ferro Concepts Slickster */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="ferro-slickster" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Low-Profile</span>
+            <div className="mt-3">
+              <span className="product-name">Ferro Concepts Slickster</span>
             </div>
-          ))}
+          </div>
+          <div className="product-price">$165</div>
+        </div>
+
+        <p className="product-desc">
+          The Slickster is the carrier you can actually conceal. At under 1 lb and completely slick (no external MOLLE), it disappears under a jacket or oversized shirt. The cummerbund uses elastic for a snug, adjustable fit without bulk.
+        </p>
+        <p className="product-desc">
+          But "slick" doesn't mean "limited." Add a Ferro ADAPT front flap for magazines, a back panel for hydration, or swap the cummerbund for their MOLLE version when you need external pouches. The Slickster is a platform that grows with your needs — start minimal, add as required.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">~0.9 lbs (Base)</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">M, L (SAPI/Swimmer)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Elastic (included), MOLLE available</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">Black, Coyote, Ranger Green, MultiCam</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> True concealment — fits under a jacket</li>
+              <li><span className="icon-pro">✓</span> Lightest carrier in this guide (~0.9 lbs)</li>
+              <li><span className="icon-pro">✓</span> Modular — add ADAPT panels, placards, cummerbunds</li>
+              <li><span className="icon-pro">✓</span> Excellent value at $165</li>
+              <li><span className="icon-pro">✓</span> Huge aftermarket ecosystem</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> No built-in MOLLE — need accessories for pouches</li>
+              <li><span className="icon-con">✗</span> Basic elastic cummerbund isn't ideal for heavy loads</li>
+              <li><span className="icon-con">✗</span> Limited sizing (M/L only)</li>
+              <li><span className="icon-con">✗</span> Accessories add up quickly</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Concealed carry of armor, minimalist loadouts, vehicle/driver setups, anyone who wants to start simple and expand later.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Need overt MOLLE out of the box (get JPC 2.0)</li>
+            <li><span className="icon-con">✗</span> Plan to carry heavy loads (cummerbund isn't designed for it)</li>
+            <li><span className="icon-con">✗</span> Small or XL sizes (only M/L available)</li>
+            <li><span className="icon-con">✗</span> Don't want to buy additional accessories</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Ferro Concepts</span>
+            <a href="https://ferroconcepts.com/products/the-slickster" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $165
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
         </div>
       </section>
 
-      {/* Bottom Line */}
-      <section className="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800/60 mb-10">
-        <h2 className="font-heading text-xl font-bold text-zinc-100 mb-3">Bottom Line</h2>
-        <p className="text-[15px] text-zinc-400 leading-relaxed mb-3">
-          For most prepared citizens, the <strong className="text-zinc-200">Crye JPC 2.0</strong> or <strong className="text-zinc-200">Ferro Slickster</strong> will serve you well for years. If you're budget-conscious, the <strong className="text-zinc-200">Defense Mechanisms MEPC</strong> offers serious value.
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Defense Mechanisms MEPC */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="defense-mechanisms-mepc" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Value</span>
+            <div className="mt-3">
+              <span className="product-name">Defense Mechanisms MEPC</span>
+            </div>
+          </div>
+          <div className="product-price">$155–175</div>
+        </div>
+
+        <p className="product-desc">
+          The MEPC (Mission Essential Plate Carrier) punches way above its price. At $155–175 for the base carrier with plate bags, you get laser-cut MOLLE, quality 500D Cordura, and USA manufacturing — features that typically cost $250+.
         </p>
-        <p className="text-[15px] text-zinc-400 leading-relaxed">
-          Don't overthink it. Pick one that fits your plates, train with it, and upgrade accessories as you learn what you actually need.
+        <p className="product-desc">
+          Defense Mechanisms built this for people who wanted JPC-level quality without JPC-level pricing. The modular ecosystem lets you add their cummerbunds, placards, and back panels as budget allows. It's not quite as refined as the Crye, but it's 90% of the way there at 60% of the price.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">~1.0 lbs (Base)</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">S, M, L (SAPI/Swimmer)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Multiple options (sold separately or bundled)</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">MultiCam, Ranger Green, Coyote, Black, more</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Best value in the category — USA-made under $200</li>
+              <li><span className="icon-pro">✓</span> Laser-cut MOLLE (lighter, lower profile)</li>
+              <li><span className="icon-pro">✓</span> Highly modular — compatible with many placards</li>
+              <li><span className="icon-pro">✓</span> Quality on par with carriers costing $100 more</li>
+              <li><span className="icon-pro">✓</span> Multiple cummerbund options</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Less proven track record than JPC</li>
+              <li><span className="icon-con">✗</span> Cummerbund usually sold separately</li>
+              <li><span className="icon-con">✗</span> Smaller company = potentially slower shipping</li>
+              <li><span className="icon-con">✗</span> Not Berry Amendment compliant</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Budget-conscious buyers who refuse to compromise on quality. Anyone who wants JPC-level features without the JPC price tag.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Need Berry Amendment compliance (military/LEO procurement)</li>
+            <li><span className="icon-con">✗</span> Want the absolute proven best (get JPC 2.0)</li>
+            <li><span className="icon-con">✗</span> Ultra-budget under $100 (get Condor)</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Defense Mechanisms</span>
+            <a href="https://defensemechanisms.com/mepc-plate-carrier/" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $155–175
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: T.REX Arms AC1 */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="trex-ac1" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Minimalist Overt</span>
+            <div className="mt-3">
+              <span className="product-name">T.REX Arms AC1</span>
+            </div>
+          </div>
+          <div className="product-price">$240–250</div>
+        </div>
+
+        <p className="product-desc">
+          The AC1 is T.REX Arms' take on a minimalist overt carrier. Where the Slickster hides under clothing, the AC1 is designed to be worn visibly but without unnecessary bulk. Clean lines, integrated elastic cummerbund, and a simple design philosophy.
+        </p>
+        <p className="product-desc">
+          T.REX built this for their own use and it shows — the carrier is optimized for speed and mobility over maximum attachment points. If you want a carrier that does one thing well (protect you without slowing you down), the AC1 delivers.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">~1.2 lbs</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">M, L (10x12)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Elastic (integrated)</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">Ranger Green, Black, MultiCam, M81 Woodland</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Clean, minimalist design</li>
+              <li><span className="icon-pro">✓</span> USA-made quality</li>
+              <li><span className="icon-pro">✓</span> Good balance of mobility and protection</li>
+              <li><span className="icon-pro">✓</span> Works with most placards</li>
+              <li><span className="icon-pro">✓</span> Solid reputation from T.REX Arms</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Pricier than similar options ($240–250)</li>
+              <li><span className="icon-con">✗</span> Limited sizing (M/L only)</li>
+              <li><span className="icon-con">✗</span> Minimalist = fewer features built in</li>
+              <li><span className="icon-con">✗</span> Elastic cummerbund not ideal for heavy loads</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Shooters who want a simple, clean carrier without bells and whistles. T.REX Arms fans. Minimalists who still want overt capability.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Want maximum modularity (get JPC 2.0 or LV-119)</li>
+            <li><span className="icon-con">✗</span> Need to carry heavy loads (get Banshee Elite)</li>
+            <li><span className="icon-con">✗</span> Budget under $200 (get MEPC)</li>
+            <li><span className="icon-con">✗</span> Small or XL sizes needed</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">T.REX Arms</span>
+            <a href="https://www.trex-arms.com/store/T-REX-ARMS-AC1-Plate-Carrier/" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $240–250
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Spiritus Systems LV-119 */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="spiritus-lv119" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Modular System</span>
+            <div className="mt-3">
+              <span className="product-name">Spiritus Systems LV-119</span>
+            </div>
+          </div>
+          <div className="product-price">$350–450</div>
+        </div>
+
+        <p className="product-desc">
+          The LV-119 isn't just a plate carrier — it's a modular system. Buy the overt or covert front/back, choose your cummerbund, add their Micro Fight chassis, and build exactly the carrier you want. No other system offers this level of configurability.
+        </p>
+        <p className="product-desc">
+          The trade-off is complexity and cost. A fully-built LV-119 with cummerbund and placard runs $350–450. But if you want to swap between a slick setup and a full combat loadout by just changing components, nothing else comes close.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">~1.5 lbs (complete)</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">M, L (SAPI)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Multiple options (sold separately)</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">MultiCam, Ranger Green, Coyote, Black, M81, more</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Maximum modularity — swap between configs</li>
+              <li><span className="icon-pro">✓</span> Overt or covert front/back options</li>
+              <li><span className="icon-pro">✓</span> Micro Fight chassis is industry-leading</li>
+              <li><span className="icon-pro">✓</span> Premium USA-made quality</li>
+              <li><span className="icon-pro">✓</span> Build exactly what you need</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Expensive — $350–450 for a complete setup</li>
+              <li><span className="icon-con">✗</span> Buying components separately is confusing</li>
+              <li><span className="icon-con">✗</span> Often out of stock</li>
+              <li><span className="icon-con">✗</span> Overkill for simple range use</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Gear nerds who want maximum customization. Users who need to swap between slick and overt setups. People who appreciate the Spiritus ecosystem.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> First plate carrier (too complex — get JPC or MEPC)</li>
+            <li><span className="icon-con">✗</span> Budget under $300</li>
+            <li><span className="icon-con">✗</span> Want a simple, complete solution out of the box</li>
+            <li><span className="icon-con">✗</span> Impatient — Spiritus stock is unpredictable</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Spiritus Systems</span>
+            <a href="https://spiritussystems.com/lv-119-rear-overt-plate-bag/" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $350–450 (complete)
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Shellback Banshee Elite 2.0 */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="shellback-banshee" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best for Heavy Loads</span>
+            <div className="mt-3">
+              <span className="product-name">Shellback Tactical Banshee Elite 2.0</span>
+            </div>
+          </div>
+          <div className="product-price">$280–350</div>
+        </div>
+
+        <p className="product-desc">
+          The Banshee Elite 2.0 is built for extended wear under heavy loads. At 3 lbs, it's the heaviest carrier in this guide — but that weight is padding, structure, and support that matter when you're wearing 20+ lbs of gear for hours.
+        </p>
+        <p className="product-desc">
+          The shoulder straps are generously padded. The cummerbund distributes weight across your torso. Quick-release buckles let you doff fast. If your use case involves long days in armor with a full combat load, this is the carrier that won't destroy your shoulders.
+        </p>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">3.0 lbs</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">500D Cordura</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">M, L, XL (10x12, 11x14)</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Padded, quick-release</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">Black, Coyote, Ranger Green, MultiCam</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">USA</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Best padding and support for heavy loads</li>
+              <li><span className="icon-pro">✓</span> Comfortable for all-day wear</li>
+              <li><span className="icon-pro">✓</span> Quick-release cummerbund</li>
+              <li><span className="icon-pro">✓</span> Fits larger plates (up to 11x14)</li>
+              <li><span className="icon-pro">✓</span> USA-made quality</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Heavy at 3 lbs (carrier alone)</li>
+              <li><span className="icon-con">✗</span> Bulky — not for low-profile use</li>
+              <li><span className="icon-con">✗</span> Overkill for light loadouts</li>
+              <li><span className="icon-con">✗</span> Less "cool guy" aesthetics</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Long training days, heavy combat loads, larger-bodied users, anyone prioritizing comfort over weight savings.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Weight-conscious users (this is heavy)</li>
+            <li><span className="icon-con">✗</span> Concealment needs (too bulky)</li>
+            <li><span className="icon-con">✗</span> Minimalist loadouts (overkill)</li>
+            <li><span className="icon-con">✗</span> Budget under $250</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Shellback Tactical</span>
+            <a href="https://www.shellbacktactical.com/shellback-tactical-banshee-elite-2-0-plate-carrier/" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $280–320
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* PRODUCT: Condor Sentry */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section id="condor-sentry" className="product-card">
+        <div className="product-header">
+          <div>
+            <span className="badge mb-3">Best Budget</span>
+            <div className="mt-3">
+              <span className="product-name">Condor Sentry</span>
+            </div>
+          </div>
+          <div className="product-price">$45–60</div>
+        </div>
+
+        <p className="product-desc">
+          The Condor Sentry is the cheapest plate carrier worth buying. At $45–60, it's firmly in "airsoft territory" — but unlike actual airsoft gear, it will hold real plates and won't fall apart immediately.
+        </p>
+        <p className="product-desc">
+          Let's be clear: this is not a duty-grade carrier. The stitching is adequate, not bomb-proof. The materials are heavier and less comfortable than premium options. But if you need a carrier for training, airsoft, or just trying out the concept of wearing armor, the Sentry gets the job done.
+        </p>
+
+        {/* Warning Box */}
+        <div className="warning-box">
+          <svg className="warning-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div>
+            <div className="warning-title">Reality Check</div>
+            <div className="warning-text">Do not bet your life on a $50 carrier. If your use case involves actual danger, buy a real carrier. The Sentry is for training, airsoft, and testing if you like plate carriers before investing more.</div>
+          </div>
+        </div>
+
+        {/* Specs */}
+        <div className="specs-box">
+          <div className="specs-label">Specs</div>
+          <div className="spec-row"><span className="spec-label">Weight</span><span className="spec-value">1.8 lbs</span></div>
+          <div className="spec-row"><span className="spec-label">Material</span><span className="spec-value">Nylon</span></div>
+          <div className="spec-row"><span className="spec-label">Plate Sizes</span><span className="spec-value">Up to 10.25" x 13.25"</span></div>
+          <div className="spec-row"><span className="spec-label">Cummerbund</span><span className="spec-value">Basic (included)</span></div>
+          <div className="spec-row"><span className="spec-label">Colors</span><span className="spec-value">Black, Coyote, OD Green, MultiCam</span></div>
+          <div className="spec-row"><span className="spec-label">Made In</span><span className="spec-value">China</span></div>
+        </div>
+
+        {/* Pros / Cons */}
+        <div className="pros-cons">
+          <div className="pros-box">
+            <div className="pros-label">Pros</div>
+            <ul className="pc-list">
+              <li><span className="icon-pro">✓</span> Cheapest carrier worth buying</li>
+              <li><span className="icon-pro">✓</span> Will hold real plates</li>
+              <li><span className="icon-pro">✓</span> Good enough for training/airsoft</li>
+              <li><span className="icon-pro">✓</span> MOLLE webbing works</li>
+              <li><span className="icon-pro">✓</span> Great for trying out plate carriers</li>
+            </ul>
+          </div>
+          <div className="cons-box">
+            <div className="cons-label">Cons</div>
+            <ul className="pc-list">
+              <li><span className="icon-con">✗</span> Not duty-grade quality</li>
+              <li><span className="icon-con">✗</span> Heavier than premium carriers (1.8 lbs)</li>
+              <li><span className="icon-con">✗</span> Less comfortable for extended wear</li>
+              <li><span className="icon-con">✗</span> Made in China — QC is inconsistent</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Best For */}
+        <div className="best-for-box">
+          <div className="best-for-label">Best For</div>
+          <p className="best-for-text">Airsoft, training, testing if you like wearing armor, ultra-tight budgets, beater carriers you don't care about.</p>
+        </div>
+
+        {/* Who Should NOT Buy */}
+        <div className="not-for-box">
+          <div className="not-for-label">Who Should NOT Buy This</div>
+          <ul className="pc-list">
+            <li><span className="icon-con">✗</span> Any actual defensive use (buy a real carrier)</li>
+            <li><span className="icon-con">✗</span> Professional/duty use</li>
+            <li><span className="icon-con">✗</span> Extended wear comfort needed</li>
+            <li><span className="icon-con">✗</span> Anyone who can stretch to $155 for the MEPC</li>
+          </ul>
+        </div>
+
+        {/* Prices */}
+        <div className="price-section">
+          <div className="specs-label">Current Prices</div>
+          <div className="price-row">
+            <span className="price-retailer">Amazon</span>
+            <a href="https://www.amazon.com/Condor-Sentry-Plate-Carrier-Black/dp/B00DVOQB8S" target="_blank" rel="noopener noreferrer" className="price-btn">
+              $45–60
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Price Alert CTA */}
+        <div className="mt-4 text-center">
+          <p className="text-text-muted text-sm">Want to know when this drops below fair value? <span className="text-silver cursor-pointer hover:text-chrome">Track this carrier →</span></p>
+        </div>
+      </section>
+
+      <div className="divider my-10"><div className="divider-line"></div></div>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* FULL COMPARISON MATRIX */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="mb-10">
+        <div className="section-label">Full Feature Comparison</div>
+        <div className="overflow-x-auto">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>JPC 2.0</th>
+                <th>Slickster</th>
+                <th>MEPC</th>
+                <th>AC1</th>
+                <th>LV-119</th>
+                <th>Banshee</th>
+                <th>Sentry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-text-muted">Weight</td>
+                <td>1.1 lbs</td>
+                <td>0.9 lbs</td>
+                <td>1.0 lbs</td>
+                <td>1.2 lbs</td>
+                <td>~1.5 lbs</td>
+                <td>3.0 lbs</td>
+                <td>1.8 lbs</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Material</td>
+                <td>500D</td>
+                <td>500D</td>
+                <td>500D</td>
+                <td>500D</td>
+                <td>500D</td>
+                <td>500D</td>
+                <td>Nylon</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Made In</td>
+                <td className="text-status-green">USA</td>
+                <td className="text-status-green">USA</td>
+                <td className="text-status-green">USA</td>
+                <td className="text-status-green">USA</td>
+                <td className="text-status-green">USA</td>
+                <td className="text-status-green">USA</td>
+                <td>China</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Laser-Cut MOLLE</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Quick Release</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td>Optional</td>
+                <td className="text-status-red">✗</td>
+                <td>Optional</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Concealable</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td>Covert option</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Berry Compliant</td>
+                <td className="text-status-green">✓</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+                <td className="text-status-red">✗</td>
+              </tr>
+              <tr>
+                <td className="text-text-muted">Price</td>
+                <td>$250–290</td>
+                <td>$165</td>
+                <td>$155–175</td>
+                <td>$240–250</td>
+                <td>$350–450</td>
+                <td>$280–350</td>
+                <td>$45–60</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* FAQ */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="mb-10">
+        <div className="section-label">FAQ</div>
+        <div className="faq-item">
+          <div className="faq-question">Do I need a plate carrier if I have plates?</div>
+          <p className="faq-answer">Yes. Plates alone don't help — you need a carrier to wear them. The carrier also distributes weight, allows you to mount gear, and keeps the plates positioned correctly. Budget 20-30% of your total armor budget for the carrier.</p>
+        </div>
+        <div className="faq-item">
+          <div className="faq-question">What size plates fit these carriers?</div>
+          <p className="faq-answer">Most carriers in this guide fit Medium SAPI (9.5" x 12.5") or standard 10" x 12" plates. Large carriers fit Large SAPI (10.125" x 13.25"). Always check the specific carrier's plate pocket dimensions against your plates.</p>
+        </div>
+        <div className="faq-item">
+          <div className="faq-question">Slick or overt — which should I buy?</div>
+          <p className="faq-answer">Depends on use case. Slick (like the Slickster) hides under clothing and works for concealed carry of armor. Overt (like the JPC) has external MOLLE for mounting pouches and is better for range training, classes, and visible loadouts. Some carriers (like the LV-119) offer both configurations.</p>
+        </div>
+        <div className="faq-item">
+          <div className="faq-question">Why is the JPC 2.0 so popular?</div>
+          <p className="faq-answer">It's the Goldilocks carrier — light enough to not slow you down, modular enough to grow with your needs, and proven in actual combat by special operations units. Most other carriers are either compared against it or designed to compete with it.</p>
+        </div>
+        <div className="faq-item">
+          <div className="faq-question">Is the Condor Sentry actually usable?</div>
+          <p className="faq-answer">For training and airsoft, yes. For anything where your life depends on it, no. The Sentry is fine for getting a feel for plate carriers, running training courses, or casual range use. It's not appropriate for duty use or actual defensive scenarios.</p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* BOTTOM LINE */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="card mb-10">
+        <div className="section-label">Bottom Line</div>
+        <ul className="space-y-2 text-sm text-text-secondary">
+          <li><strong className="text-silver">Crye JPC 2.0</strong> — the default choice for most people</li>
+          <li><strong className="text-silver">Ferro Slickster</strong> — if you need to conceal armor</li>
+          <li><strong className="text-silver">Defense Mechanisms MEPC</strong> — if you want JPC quality at 60% the price</li>
+          <li><strong className="text-silver">T.REX Arms AC1</strong> — if you want simple and minimalist</li>
+          <li><strong className="text-silver">Spiritus LV-119</strong> — if you want maximum modularity</li>
+          <li><strong className="text-silver">Shellback Banshee Elite 2.0</strong> — if comfort under heavy loads is priority</li>
+          <li><strong className="text-silver">Condor Sentry</strong> — if you're on a strict budget or just testing</li>
+        </ul>
+        <p className="text-text-secondary text-sm mt-6">
+          For most people, the JPC 2.0 or MEPC is the right answer. Everything else is situational.
         </p>
       </section>
 
-      {/* Disclaimer */}
-      <p className="text-xs text-zinc-600 text-center">
-        Prices last verified February 1, 2026. We may earn affiliate commission from links on this page.
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* AFFILIATE DISCLOSURE */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <div className="affiliate-disclosure">
+        <p>
+          <strong>Affiliate Disclosure:</strong> TacVault earns a commission from purchases made through links on this site. This doesn't affect our rankings — we recommend what we'd actually buy. All specs are verified against manufacturer websites, not retailer descriptions.
+        </p>
+      </div>
+
+      {/* Last Updated */}
+      <p className="text-text-muted text-xs mt-8 text-center">
+        Prices last updated: February 3, 2026 • Specs verified against official manufacturer websites
       </p>
-    </article>
+    </div>
   )
 }
