@@ -1,8 +1,11 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Best Red Dots Under $300 (2026) — TacVault',
-  description: '7 optics tested with verified specs from manufacturer websites. Holosun 507C, Sig Romeo5, Vortex SPARC AR, and more. No sponsored rankings.',
+  title: 'Best Red Dots Under $300 (2026) | TacVault',
+  description: '7 red dot optics compared with verified specs, current prices, and honest recommendations.',
+  alternates: {
+    canonical: '/guides/best-red-dots-under-300',
+  },
 }
 
 export default function BestRedDotsPage() {

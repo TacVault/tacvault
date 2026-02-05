@@ -5,6 +5,21 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'TacVault — Build Your Loadout. Find the Best Price.',
   description: 'Compare tactical gear, check compatibility, and stop wasting money on stuff that doesn\'t work together. Like PCPartPicker, but for your kit.',
+  metadataBase: new URL('https://tacvault.io'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'TacVault — Build Your Loadout. Find the Best Price.',
+    description: 'Compare tactical gear, check compatibility, and find the best prices. Like PCPartPicker, but for your kit.',
+    url: 'https://tacvault.io',
+    siteName: 'TacVault',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({

@@ -1,8 +1,11 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Best Plate Carriers 2026 — TacVault',
-  description: '7 plate carriers compared with verified specs. Crye JPC 2.0, Ferro Slickster, Defense Mechanisms MEPC, and more. No sponsored rankings.',
+  title: 'Best Plate Carriers 2026 | TacVault',
+  description: '7 plate carriers compared with verified specs, current prices from multiple retailers, and honest recommendations.',
+  alternates: {
+    canonical: '/guides/best-plate-carriers-2026',
+  },
 }
 
 export default function BestPlateCarriersPage() {
