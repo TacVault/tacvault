@@ -1,155 +1,74 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { supabase } from '../supabase.js';
 
-const productsData = [
-  { id: "crye-jpc-2", brand: "Crye Precision", name: "JPC 2.0", category: "plate-carriers", urlSlug: "/products/crye-precision/jpc-2-0" },
-  { id: "ferro-slickster", brand: "Ferro Concepts", name: "Slickster", category: "plate-carriers", urlSlug: "/products/ferro-concepts/slickster" },
-  { id: "dm-mepc", brand: "Defense Mechanisms", name: "MEPC", category: "plate-carriers", urlSlug: "/products/defense-mechanisms/mepc" },
-  { id: "trex-ac1-5", brand: "T.REX Arms", name: "AC1.5", category: "plate-carriers", urlSlug: "/products/trex-arms/ac1-5" },
-  { id: "spiritus-lv120", brand: "Spiritus Systems", name: "LV-120 OVERT", category: "plate-carriers", urlSlug: "/products/spiritus-systems/lv-120" },
-  { id: "condor-sentry", brand: "Condor", name: "Sentry", category: "plate-carriers", urlSlug: "/products/condor/sentry" },
-  { id: "shellback-banshee-elite-2", brand: "Shellback Tactical", name: "Banshee Elite 2.0", category: "plate-carriers", urlSlug: "/products/shellback-tactical/banshee-elite-2-0" },
-  { id: "haley-d3crm", brand: "Haley Strategic", name: "D3CRM Micro", category: "placards", urlSlug: "/products/haley-strategic/d3crm" },
-  { id: "spiritus-microfight-mk5", brand: "Spiritus Systems", name: "Micro Fight Mk5", category: "placards", urlSlug: "/products/spiritus-systems/micro-fight-mk5" },
-  { id: "ferro-ktar", brand: "Ferro Concepts", name: "KTAR Front Flap", category: "placards", urlSlug: "/products/ferro-concepts/ktar" },
-  { id: "esstac-daeodon", brand: "Esstac", name: "Daeodon Front Panel", category: "placards", urlSlug: "/products/esstac/daeodon" },
-  { id: "crye-airlite-flap", brand: "Crye Precision", name: "AirLite Detachable Flap", category: "placards", urlSlug: "/products/crye-precision/airlite-flap" },
-  { id: "crye-skeletal-cummerbund", brand: "Crye Precision", name: "Skeletal Cummerbund", category: "cummerbunds", urlSlug: "/products/crye-precision/skeletal-cummerbund" },
-  { id: "crye-avs-cummerbund", brand: "Crye Precision", name: "AVS Cummerbund", category: "cummerbunds", urlSlug: "/products/crye-precision/avs-cummerbund" },
-  { id: "ferro-carry-elastic", brand: "Ferro Concepts", name: "Carry Elastic Cummerbund", category: "cummerbunds", urlSlug: "/products/ferro-concepts/carry-elastic" },
-  { id: "ferro-molle-cummerbund", brand: "Ferro Concepts", name: "MOLLE Cummerbund", category: "cummerbunds", urlSlug: "/products/ferro-concepts/molle-cummerbund" },
-  { id: "spiritus-tubes-cummerbund", brand: "Spiritus Systems", name: "Reactive Cummerbund (TUBES)", category: "cummerbunds", urlSlug: "/products/spiritus-systems/tubes-cummerbund" },
-  { id: "shaw-arc-cummerbund", brand: "Shaw Concepts", name: "ARC Cummerbund", category: "cummerbunds", urlSlug: "/products/shaw-concepts/arc-cummerbund" },
-  { id: "axl-equinox", brand: "AXL Advanced", name: "Equinox Cummerbund", category: "cummerbunds", urlSlug: "/products/axl-advanced/equinox" },
-  { id: "crye-zip-on-panel", brand: "Crye Precision", name: "ZIP-ON Panel 2.0", category: "back-panels", urlSlug: "/products/crye-precision/zip-on-panel" },
-  { id: "spiritus-lv119-backpanel", brand: "Spiritus Systems", name: "LV-119 Back Panel", category: "back-panels", urlSlug: "/products/spiritus-systems/lv119-backpanel" },
-  { id: "spiritus-lv120-backpanel", brand: "Spiritus Systems", name: "LV-120 Back Panel", category: "back-panels", urlSlug: "/products/spiritus-systems/lv120-backpanel" },
-  { id: "hesco-4401", brand: "Hesco", name: "4401 Level IV", category: "plates", urlSlug: "/products/hesco/4401" },
-  { id: "hesco-l210", brand: "Hesco", name: "L210 Special Threat", category: "plates", urlSlug: "/products/hesco/l210" },
-  { id: "rma-1155", brand: "RMA Defense", name: "1155 Level IV", category: "plates", urlSlug: "/products/rma-defense/1155" },
-  { id: "highcom-4s17m", brand: "HighCom", name: "4S17M Level IV Multi-Curve", category: "plates", urlSlug: "/products/highcom/4s17m" },
-];
+interface Product {
+  id: string;
+  brand: string;
+  name: string;
+  category: string;
+  url_slug: string;
+  has_product_page: boolean;
+  status: string;
+}
 
-const evidenceData = [
-  { id: "ev-crye-jpc-skeletal", sourceType: "manufacturer", sourceName: "Crye Precision", sourceUrl: "https://cryeprecision.com", shortQuote: "Features the Skeletal Cummerbund system", dateCaptured: "2026-02-01" },
-  { id: "ev-crye-avs-compat", sourceType: "manufacturer", sourceName: "Crye Precision", sourceUrl: "https://cryeprecision.com", shortQuote: "Compatible with AVS zip-on panels", dateCaptured: "2026-02-01" },
-  { id: "ev-haley-d3crm-swiftclip", sourceType: "manufacturer", sourceName: "Haley Strategic", sourceUrl: "https://haleystrategic.com", shortQuote: "Attaches via the included Swift Clips", dateCaptured: "2026-02-01" },
-  { id: "ev-reddit-jpc-d3crm-1", sourceType: "community", sourceName: "Reddit r/tacticalgear", sourceUrl: "https://reddit.com/r/tacticalgear", shortQuote: "Running D3CRM on my JPC 2.0, works perfectly", dateCaptured: "2026-01-15" },
-  { id: "ev-reddit-jpc-d3crm-2", sourceType: "community", sourceName: "Reddit r/QualityTacticalGear", sourceUrl: "https://reddit.com/r/QualityTacticalGear", shortQuote: "D3CRM + JPC 2.0 is the classic combo", dateCaptured: "2026-01-20" },
-  { id: "ev-youtube-jpc-d3crm", sourceType: "community", sourceName: "Garand Thumb (YouTube)", sourceUrl: "https://youtube.com", shortQuote: "Demonstrated D3CRM attachment on JPC 2.0", dateCaptured: "2026-01-10" },
-  { id: "ev-ferro-slickster-adapt", sourceType: "manufacturer", sourceName: "Ferro Concepts", sourceUrl: "https://ferroconcepts.com", shortQuote: "ADAPT front panel system compatible", dateCaptured: "2026-02-01" },
-  { id: "ev-ferro-slickster-cummerbund", sourceType: "manufacturer", sourceName: "Ferro Concepts", sourceUrl: "https://ferroconcepts.com", shortQuote: "Works with all Ferro Concepts cummerbunds", dateCaptured: "2026-02-01" },
-  { id: "ev-spiritus-microfight-swiftclip", sourceType: "manufacturer", sourceName: "Spiritus Systems", sourceUrl: "https://spiritussystems.com", shortQuote: "Includes swift clip attachment hardware", dateCaptured: "2026-02-01" },
-  { id: "ev-reddit-slickster-d3crm-1", sourceType: "community", sourceName: "Reddit r/tacticalgear", sourceUrl: "https://reddit.com/r/tacticalgear", shortQuote: "D3CRM works great on Slickster", dateCaptured: "2026-01-18" },
-  { id: "ev-reddit-slickster-d3crm-2", sourceType: "community", sourceName: "Reddit r/QualityTacticalGear", sourceUrl: "https://reddit.com/r/QualityTacticalGear", shortQuote: "Using swift clips on Slickster, solid attachment", dateCaptured: "2026-01-22" },
-  { id: "ev-arfcom-slickster-d3crm", sourceType: "community", sourceName: "AR15.com", sourceUrl: "https://ar15.com/forums", shortQuote: "Confirmed working: Slickster + D3CRM", dateCaptured: "2026-01-12" },
-  { id: "ev-dm-mepc-plates", sourceType: "manufacturer", sourceName: "Defense Mechanisms", sourceUrl: "https://defensemechanisms.com", shortQuote: "Fits SAPI S/M/L/XL and 10x12 Swimmer Cut plates", dateCaptured: "2026-02-01" },
-  { id: "ev-spiritus-lv120-zipper", sourceType: "manufacturer", sourceName: "Spiritus Systems", sourceUrl: "https://spiritussystems.com", shortQuote: "Uses new #10 Universal Zipper - NOT compatible with LV-119 panels", dateCaptured: "2026-02-01" },
-  { id: "ev-spiritus-lv120-tubes", sourceType: "manufacturer", sourceName: "Spiritus Systems", sourceUrl: "https://spiritussystems.com", shortQuote: "Features integrated First Spear TUBES quick-release", dateCaptured: "2026-02-01" },
-  { id: "ev-hesco-4401-dims", sourceType: "manufacturer", sourceName: "Hesco", sourceUrl: "https://hesco.com", shortQuote: "10x12 Shooters Cut, 1.0 inch thick", dateCaptured: "2026-02-01" },
-  { id: "ev-reddit-jpc-hesco-1", sourceType: "community", sourceName: "Reddit r/tacticalgear", sourceUrl: "https://reddit.com/r/tacticalgear", shortQuote: "4401s fit in my Medium JPC perfectly", dateCaptured: "2026-01-25" },
-  { id: "ev-reddit-jpc-hesco-2", sourceType: "community", sourceName: "Reddit r/QualityTacticalGear", sourceUrl: "https://reddit.com/r/QualityTacticalGear", shortQuote: "JPC 2.0 + Hesco 4401 is the starter combo", dateCaptured: "2026-01-28" },
-  { id: "ev-youtube-jpc-hesco", sourceType: "community", sourceName: "Armor Standards (YouTube)", sourceUrl: "https://youtube.com", shortQuote: "Demonstrated Hesco 4401 installation in JPC 2.0", dateCaptured: "2026-01-08" },
-  { id: "ev-axl-equinox-jpc", sourceType: "manufacturer", sourceName: "AXL Advanced", sourceUrl: "https://axladv.com", shortQuote: "Direct replacement for JPC/AVS skeletal cummerbund", dateCaptured: "2026-02-01" },
-  { id: "ev-crye-zipon-avs", sourceType: "manufacturer", sourceName: "Crye Precision", sourceUrl: "https://cryeprecision.com", shortQuote: "Compatible with JPC 2.0, AVS, and other Crye carriers", dateCaptured: "2026-02-01" },
-  { id: "ev-spiritus-lv119-incompatible", sourceType: "manufacturer", sourceName: "Spiritus Systems", sourceUrl: "https://spiritussystems.com", shortQuote: "LV-119 back panels are NOT compatible with LV-120", dateCaptured: "2026-02-01" },
-];
+interface Evidence {
+  id: string;
+  source_type: string;
+  source_name: string;
+  source_url: string;
+  short_quote: string;
+  date_captured: string;
+}
 
-const compatData = [
-  { id: "compat-jpc2-d3crm", fromProductId: "crye-jpc-2", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Attaches via swift clips to front loop panel", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip", "ev-reddit-jpc-d3crm-1", "ev-reddit-jpc-d3crm-2", "ev-youtube-jpc-d3crm"] },
-  { id: "compat-jpc2-microfight", fromProductId: "crye-jpc-2", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Attaches via swift clips", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip", "ev-reddit-jpc-d3crm-1", "ev-reddit-jpc-d3crm-2"] },
-  { id: "compat-jpc2-crye-flap", fromProductId: "crye-jpc-2", toProductId: "crye-airlite-flap", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for JPC and other Crye carriers", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-jpc-skeletal"] },
-  { id: "compat-jpc2-ferro-ktar", fromProductId: "crye-jpc-2", toProductId: "ferro-ktar", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clip interface compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip", "ev-reddit-jpc-d3crm-1", "ev-reddit-jpc-d3crm-2"] },
-  { id: "compat-jpc2-esstac", fromProductId: "crye-jpc-2", toProductId: "esstac-daeodon", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Attaches via swift clips", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip", "ev-reddit-jpc-d3crm-1", "ev-reddit-jpc-d3crm-2"] },
-  { id: "compat-jpc2-skeletal-cummerbund", fromProductId: "crye-jpc-2", toProductId: "crye-skeletal-cummerbund", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Stock cummerbund, included with carrier", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-jpc-skeletal"] },
-  { id: "compat-jpc2-avs-cummerbund", fromProductId: "crye-jpc-2", toProductId: "crye-avs-cummerbund", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Direct swap for skeletal cummerbund", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-jpc-skeletal", "ev-crye-avs-compat"] },
-  { id: "compat-jpc2-axl-equinox", fromProductId: "crye-jpc-2", toProductId: "axl-equinox", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed as direct replacement with TUBES upgrade", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-axl-equinox-jpc"] },
-  { id: "compat-jpc2-zipon", fromProductId: "crye-jpc-2", toProductId: "crye-zip-on-panel", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Uses AVS zipper system", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-avs-compat", "ev-crye-zipon-avs"] },
-  { id: "compat-jpc2-hesco4401", fromProductId: "crye-jpc-2", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits in Medium JPC", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims", "ev-reddit-jpc-hesco-1", "ev-reddit-jpc-hesco-2", "ev-youtube-jpc-hesco"] },
-  { id: "compat-jpc2-hesco-l210", fromProductId: "crye-jpc-2", toProductId: "hesco-l210", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits in Medium JPC, lightweight option", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-jpc-hesco-1", "ev-reddit-jpc-hesco-2", "ev-youtube-jpc-hesco"] },
-  { id: "compat-jpc2-rma1155", fromProductId: "crye-jpc-2", toProductId: "rma-1155", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits in Medium JPC, heavier Level IV option", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-jpc-hesco-1", "ev-reddit-jpc-hesco-2"] },
-  { id: "compat-slickster-d3crm", fromProductId: "ferro-slickster", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Attaches via swift clips or Velcro one wrap", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-slickster-d3crm-1", "ev-reddit-slickster-d3crm-2", "ev-arfcom-slickster-d3crm"] },
-  { id: "compat-slickster-microfight", fromProductId: "ferro-slickster", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Attaches via swift clips", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-slickster-d3crm-1", "ev-reddit-slickster-d3crm-2", "ev-arfcom-slickster-d3crm"] },
-  { id: "compat-slickster-ktar", fromProductId: "ferro-slickster", toProductId: "ferro-ktar", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "ADAPT compatible, designed for Ferro carriers", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-adapt"] },
-  { id: "compat-slickster-carry-elastic", fromProductId: "ferro-slickster", toProductId: "ferro-carry-elastic", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-cummerbund"] },
-  { id: "compat-slickster-molle-cummerbund", fromProductId: "ferro-slickster", toProductId: "ferro-molle-cummerbund", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-cummerbund"] },
-  { id: "compat-slickster-shaw-arc", fromProductId: "ferro-slickster", toProductId: "shaw-arc-cummerbund", relationshipType: "WORKS_WITH", status: "LIKELY", notes: "Same velcro interface as Ferro cummerbunds", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-cummerbund"] },
-  { id: "compat-slickster-hesco4401", fromProductId: "ferro-slickster", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits in M/L Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims", "ev-reddit-slickster-d3crm-1", "ev-reddit-slickster-d3crm-2"] },
-  { id: "compat-slickster-l210", fromProductId: "ferro-slickster", toProductId: "hesco-l210", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 lightweight option, ideal for slick setup", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-slickster-d3crm-1", "ev-reddit-slickster-d3crm-2"] },
-  { id: "compat-mepc-d3crm", fromProductId: "dm-mepc", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-dm-mepc-plates", "ev-haley-d3crm-swiftclip"] },
-  { id: "compat-mepc-microfight", fromProductId: "dm-mepc", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-dm-mepc-plates", "ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-mepc-hesco4401", fromProductId: "dm-mepc", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits MEPC", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-dm-mepc-plates", "ev-hesco-4401-dims"] },
-  { id: "compat-mepc-rma1155", fromProductId: "dm-mepc", toProductId: "rma-1155", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Popular budget combo", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-dm-mepc-plates"] },
-  { id: "compat-lv120-microfight", fromProductId: "spiritus-lv120", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Spiritus carriers", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip", "ev-spiritus-lv120-tubes"] },
-  { id: "compat-lv120-d3crm", fromProductId: "spiritus-lv120", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip", "ev-spiritus-lv120-tubes"] },
-  { id: "compat-lv120-tubes-cummerbund", fromProductId: "spiritus-lv120", toProductId: "spiritus-tubes-cummerbund", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Included with LV-120", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv120-tubes"] },
-  { id: "compat-lv120-lv120-backpanel", fromProductId: "spiritus-lv120", toProductId: "spiritus-lv120-backpanel", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Uses new #10 Universal Zipper", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv120-zipper"] },
-  { id: "compat-lv120-lv119-backpanel", fromProductId: "spiritus-lv120", toProductId: "spiritus-lv119-backpanel", relationshipType: "CONFLICTS", status: "OFFICIAL", notes: "NOT COMPATIBLE - Different zipper size (#10 vs LV-119 zipper)", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv119-incompatible", "ev-spiritus-lv120-zipper"] },
-  { id: "compat-lv120-hesco4401", fromProductId: "spiritus-lv120", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "SAPI-sized plates fit LV-120", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv120-tubes", "ev-hesco-4401-dims"] },
-  { id: "compat-ac15-d3crm", fromProductId: "trex-ac1-5", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-ac15-microfight", fromProductId: "trex-ac1-5", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-ac15-hesco4401", fromProductId: "trex-ac1-5", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits AC1.5", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-condor-hesco4401", fromProductId: "condor-sentry", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Condor Sentry", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-condor-rma1155", fromProductId: "condor-sentry", toProductId: "rma-1155", relationshipType: "WORKS_WITH", status: "LIKELY", notes: "Popular budget combo (10x12 dimensions match)", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-banshee-d3crm", fromProductId: "shellback-banshee-elite-2", toProductId: "haley-d3crm", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "QASM compatible front", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-banshee-microfight", fromProductId: "shellback-banshee-elite-2", toProductId: "spiritus-microfight-mk5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "QASM compatible front", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-banshee-hesco4401", fromProductId: "shellback-banshee-elite-2", toProductId: "hesco-4401", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Banshee Elite 2.0", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-d3crm-jpc2", fromProductId: "haley-d3crm", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips to JPC front panel", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip", "ev-reddit-jpc-d3crm-1", "ev-reddit-jpc-d3crm-2"] },
-  { id: "compat-d3crm-slickster", fromProductId: "haley-d3crm", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips or velcro attachment", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-reddit-slickster-d3crm-1", "ev-reddit-slickster-d3crm-2", "ev-arfcom-slickster-d3crm"] },
-  { id: "compat-d3crm-mepc", fromProductId: "haley-d3crm", toProductId: "dm-mepc", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-d3crm-ac15", fromProductId: "haley-d3crm", toProductId: "trex-ac1-5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-d3crm-lv120", fromProductId: "haley-d3crm", toProductId: "spiritus-lv120", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-d3crm-banshee", fromProductId: "haley-d3crm", toProductId: "shellback-banshee-elite-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "QASM compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-microfight-jpc2", fromProductId: "spiritus-microfight-mk5", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips to JPC front panel", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-microfight-slickster", fromProductId: "spiritus-microfight-mk5", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-microfight-mepc", fromProductId: "spiritus-microfight-mk5", toProductId: "dm-mepc", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-microfight-ac15", fromProductId: "spiritus-microfight-mk5", toProductId: "trex-ac1-5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clips compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-microfight-lv120", fromProductId: "spiritus-microfight-mk5", toProductId: "spiritus-lv120", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Spiritus carriers", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-microfight-banshee", fromProductId: "spiritus-microfight-mk5", toProductId: "shellback-banshee-elite-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "QASM compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-microfight-swiftclip"] },
-  { id: "compat-ktar-slickster", fromProductId: "ferro-ktar", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "ADAPT system, designed for Ferro carriers", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-adapt"] },
-  { id: "compat-ktar-jpc2", fromProductId: "ferro-ktar", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Swift clip interface compatible", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-haley-d3crm-swiftclip"] },
-  { id: "compat-skeletal-jpc2", fromProductId: "crye-skeletal-cummerbund", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Stock cummerbund for JPC 2.0", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-jpc-skeletal"] },
-  { id: "compat-avscum-jpc2", fromProductId: "crye-avs-cummerbund", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Direct replacement for skeletal", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-avs-compat"] },
-  { id: "compat-equinox-jpc2", fromProductId: "axl-equinox", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Direct replacement with TUBES upgrade", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-axl-equinox-jpc"] },
-  { id: "compat-ferroc-slickster", fromProductId: "ferro-carry-elastic", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-cummerbund"] },
-  { id: "compat-ferrom-slickster", fromProductId: "ferro-molle-cummerbund", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Designed for Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-ferro-slickster-cummerbund"] },
-  { id: "compat-shawarc-slickster", fromProductId: "shaw-arc-cummerbund", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "LIKELY", notes: "Same velcro interface as Ferro", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-tubes-lv120", fromProductId: "spiritus-tubes-cummerbund", toProductId: "spiritus-lv120", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "Included with LV-120", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv120-tubes"] },
-  { id: "compat-hesco4401-jpc2", fromProductId: "hesco-4401", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Medium JPC", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims", "ev-reddit-jpc-hesco-1", "ev-reddit-jpc-hesco-2"] },
-  { id: "compat-hesco4401-slickster", fromProductId: "hesco-4401", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits M/L Slickster", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-hesco4401-mepc", fromProductId: "hesco-4401", toProductId: "dm-mepc", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits MEPC", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims", "ev-dm-mepc-plates"] },
-  { id: "compat-hesco4401-ac15", fromProductId: "hesco-4401", toProductId: "trex-ac1-5", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits AC1.5", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-hesco4401-lv120", fromProductId: "hesco-4401", toProductId: "spiritus-lv120", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Fits LV-120", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-hesco4401-condor", fromProductId: "hesco-4401", toProductId: "condor-sentry", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Condor Sentry", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-hesco4401-banshee", fromProductId: "hesco-4401", toProductId: "shellback-banshee-elite-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Banshee Elite 2.0", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-hesco-4401-dims"] },
-  { id: "compat-l210-jpc2", fromProductId: "hesco-l210", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 lightweight option", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-l210-slickster", fromProductId: "hesco-l210", toProductId: "ferro-slickster", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Ideal for slick setups", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-rma1155-jpc2", fromProductId: "rma-1155", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "10x12 fits Medium JPC", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-rma1155-mepc", fromProductId: "rma-1155", toProductId: "dm-mepc", relationshipType: "WORKS_WITH", status: "VERIFIED", notes: "Popular budget combo", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-dm-mepc-plates"] },
-  { id: "compat-rma1155-condor", fromProductId: "rma-1155", toProductId: "condor-sentry", relationshipType: "WORKS_WITH", status: "LIKELY", notes: "10x12 dimensions match", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: [] },
-  { id: "compat-cryezip-jpc2", fromProductId: "crye-zip-on-panel", toProductId: "crye-jpc-2", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "AVS zipper system", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-crye-zipon-avs"] },
-  { id: "compat-lv120bp-lv120", fromProductId: "spiritus-lv120-backpanel", toProductId: "spiritus-lv120", relationshipType: "WORKS_WITH", status: "OFFICIAL", notes: "#10 Universal Zipper", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv120-zipper"] },
-  { id: "compat-lv119bp-lv120", fromProductId: "spiritus-lv119-backpanel", toProductId: "spiritus-lv120", relationshipType: "CONFLICTS", status: "OFFICIAL", notes: "NOT COMPATIBLE - Different zipper sizes", requirements: null, lastVerifiedDate: "2026-02-01", evidenceIds: ["ev-spiritus-lv119-incompatible"] },
-];
+interface CompatEdge {
+  id: string;
+  from_product_id: string;
+  to_product_id: string;
+  relationship_type: string;
+  status: string;
+  notes: string;
+  requirements: string;
+  last_verified_date: string;
+}
+
+interface CompatResult {
+  product: Product;
+  edge: CompatEdge;
+  evidenceList: Evidence[];
+}
+
+interface StatusInfo {
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+  description: string;
+}
+
+interface RelationshipLabel {
+  label: string;
+  icon: string;
+}
 
 const categories = [
   { id: 'plate-carriers', name: 'Plate Carriers' },
   { id: 'placards', name: 'Placards & Chest Rigs' },
   { id: 'cummerbunds', name: 'Cummerbunds' },
   { id: 'back-panels', name: 'Back Panels (Zip-On)' },
-  { id: 'plates', name: 'Plates' },
+  { id: 'plates', name: 'Armor Plates' },
 ];
 
-const statusInfo: Record<string, { label: string; color: string; bg: string; border: string; description: string }> = {
-  OFFICIAL: { label: 'Official', color: 'text-[#4a9c6d]', bg: 'bg-[rgba(74,156,109,0.1)]', border: 'border-[rgba(74,156,109,0.3)]', description: 'Confirmed by manufacturer documentation or official support' },
-  VERIFIED: { label: 'Verified', color: 'text-[#5b9fd4]', bg: 'bg-[rgba(91,159,212,0.1)]', border: 'border-[rgba(91,159,212,0.3)]', description: 'Confirmed by 3+ independent real-world reports' },
-  LIKELY: { label: 'Likely', color: 'text-[#d4a55b]', bg: 'bg-[rgba(212,165,91,0.1)]', border: 'border-[rgba(212,165,91,0.3)]', description: 'Dimensional/interface match, no confirmed failures' },
-  UNVERIFIED: { label: 'Unverified', color: 'text-[#8b939c]', bg: 'bg-[rgba(139,147,156,0.1)]', border: 'border-[rgba(139,147,156,0.3)]', description: 'Reported once or unclear - shown for transparency' },
+const statusInfo: Record<string, StatusInfo> = {
+  OFFICIAL: { label: 'Official', color: 'text-[#4a9c6d]', bg: 'bg-[rgba(74,156,109,0.1)]', border: 'border-[rgba(74,156,109,0.3)]', description: 'Confirmed by manufacturer documentation' },
+  VERIFIED: { label: 'Verified', color: 'text-[#5b9fd4]', bg: 'bg-[rgba(91,159,212,0.1)]', border: 'border-[rgba(91,159,212,0.3)]', description: 'Confirmed by 3+ independent sources' },
+  LIKELY: { label: 'Likely', color: 'text-[#d4a55b]', bg: 'bg-[rgba(212,165,91,0.1)]', border: 'border-[rgba(212,165,91,0.3)]', description: 'Dimensional match, not yet confirmed' },
+  UNVERIFIED: { label: 'Unverified', color: 'text-[#8b939c]', bg: 'bg-[rgba(139,147,156,0.1)]', border: 'border-[rgba(139,147,156,0.3)]', description: 'Single report, needs confirmation' },
 };
 
-const relationshipLabels: Record<string, { label: string; icon: string }> = {
+const relationshipLabels: Record<string, RelationshipLabel> = {
   WORKS_WITH: { label: 'Compatible', icon: '✓' },
   REQUIRES_ADAPTER: { label: 'Requires Adapter', icon: '⚡' },
   CONFLICTS: { label: 'Not Compatible', icon: '✗' },
@@ -161,33 +80,108 @@ export default function CompatibilityPage() {
   const [targetCategory, setTargetCategory] = useState('');
   const [expandedEvidence, setExpandedEvidence] = useState<string | null>(null);
   const [showStatusIndex, setShowStatusIndex] = useState(false);
+  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [compatResults, setCompatResults] = useState<CompatResult[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const productsInCategory = useMemo(() => {
-    if (!selectedCategory) return [];
-    return productsData.filter(p => p.category === selectedCategory);
+  useEffect(() => {
+    if (!selectedCategory) {
+      setProducts([]);
+      return;
+    }
+    
+    async function loadProducts() {
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', selectedCategory)
+        .eq('status', 'active')
+        .order('brand');
+      
+      setProducts(data || []);
+    }
+    
+    loadProducts();
   }, [selectedCategory]);
 
-  const compatibleProducts = useMemo(() => {
-    if (!selectedProduct || !targetCategory) return [];
-    const edges = compatData.filter(edge => edge.fromProductId === selectedProduct);
-    const results: Array<{ product: typeof productsData[0]; edge: typeof compatData[0]; evidenceList: typeof evidenceData }> = [];
-    edges.forEach(edge => {
-      const product = productsData.find(p => p.id === edge.toProductId);
-      if (product && product.category === targetCategory) {
-        const evidenceList = edge.evidenceIds.map(evId => evidenceData.find(e => e.id === evId)).filter((e): e is typeof evidenceData[0] => e !== undefined);
-        results.push({ product, edge, evidenceList });
+  useEffect(() => {
+    if (!selectedProduct || !targetCategory) {
+      setCompatResults([]);
+      return;
+    }
+    
+    async function loadCompatibility() {
+      setLoading(true);
+      
+      const { data: edges } = await supabase
+        .from('compatibility_edges')
+        .select('*')
+        .eq('from_product_id', selectedProduct);
+      
+      if (!edges || edges.length === 0) {
+        setCompatResults([]);
+        setLoading(false);
+        return;
       }
-    });
-    const statusOrder: Record<string, number> = { OFFICIAL: 0, VERIFIED: 1, LIKELY: 2, UNVERIFIED: 3 };
-    const relationOrder: Record<string, number> = { WORKS_WITH: 0, REQUIRES_ADAPTER: 1, CONFLICTS: 2 };
-    return results.sort((a, b) => {
-      const statusDiff = (statusOrder[a.edge.status] ?? 4) - (statusOrder[b.edge.status] ?? 4);
-      if (statusDiff !== 0) return statusDiff;
-      return (relationOrder[a.edge.relationshipType] ?? 3) - (relationOrder[b.edge.relationshipType] ?? 3);
-    });
+      
+      const toProductIds = edges.map((e: CompatEdge) => e.to_product_id);
+      const { data: targetProducts } = await supabase
+        .from('products')
+        .select('*')
+        .in('id', toProductIds)
+        .eq('category', targetCategory)
+        .eq('status', 'active');
+      
+      if (!targetProducts || targetProducts.length === 0) {
+        setCompatResults([]);
+        setLoading(false);
+        return;
+      }
+      
+      const edgeIds = edges.map((e: CompatEdge) => e.id);
+      const { data: evidenceLinks } = await supabase
+        .from('compatibility_evidence')
+        .select('compatibility_edge_id, evidence_id')
+        .in('compatibility_edge_id', edgeIds);
+      
+      const evidenceIds = Array.from(new Set((evidenceLinks || []).map((l: { evidence_id: string }) => l.evidence_id)));
+      
+      let evidenceData: Evidence[] = [];
+      if (evidenceIds.length > 0) {
+        const { data } = await supabase
+          .from('evidence')
+          .select('*')
+          .in('id', evidenceIds);
+        evidenceData = data || [];
+      }
+      
+      const results: CompatResult[] = targetProducts.map((product: Product) => {
+        const edge = edges.find((e: CompatEdge) => e.to_product_id === product.id);
+        const edgeEvidenceIds = (evidenceLinks || [])
+          .filter((l: { compatibility_edge_id: string }) => l.compatibility_edge_id === edge?.id)
+          .map((l: { evidence_id: string }) => l.evidence_id);
+        const evidenceList = evidenceData.filter((e: Evidence) => edgeEvidenceIds.includes(e.id));
+        
+        return { product, edge: edge as CompatEdge, evidenceList };
+      });
+      
+      const statusOrder: Record<string, number> = { OFFICIAL: 0, VERIFIED: 1, LIKELY: 2, UNVERIFIED: 3 };
+      const relationOrder: Record<string, number> = { WORKS_WITH: 0, REQUIRES_ADAPTER: 1, CONFLICTS: 2 };
+      results.sort((a, b) => {
+        const statusDiff = (statusOrder[a.edge.status] || 4) - (statusOrder[b.edge.status] || 4);
+        if (statusDiff !== 0) return statusDiff;
+        return (relationOrder[a.edge.relationship_type] || 3) - (relationOrder[b.edge.relationship_type] || 3);
+      });
+      
+      setCompatResults(results);
+      setLoading(false);
+    }
+    
+    loadCompatibility();
   }, [selectedProduct, targetCategory]);
 
-  const selectedProductData = productsData.find(p => p.id === selectedProduct);
+  const selectedProductData = products.find(p => p.id === selectedProduct);
 
   return (
     <main className="min-h-screen bg-[#08090a] text-[#e8eaed]">
@@ -231,7 +225,7 @@ export default function CompatibilityPage() {
                 <label className="block text-sm text-[#8b939c] mb-2">Product</label>
                 <select value={selectedProduct} onChange={(e) => { setSelectedProduct(e.target.value); setTargetCategory(''); }} disabled={!selectedCategory} className="w-full bg-[#0e1011] border border-[#2a2d31] rounded-md px-4 py-3 text-[#e8eaed] focus:border-[#5c6370] focus:outline-none disabled:opacity-50">
                   <option value="">Select product...</option>
-                  {productsInCategory.map(product => <option key={product.id} value={product.id}>{product.brand} {product.name}</option>)}
+                  {products.map(product => <option key={product.id} value={product.id}>{product.brand} {product.name}</option>)}
                 </select>
               </div>
             </div>
@@ -252,20 +246,25 @@ export default function CompatibilityPage() {
           <div>
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-rajdhani font-bold text-xl text-[#c8cfd7]">{categories.find(c => c.id === targetCategory)?.name} compatible with {selectedProductData?.brand} {selectedProductData?.name}</h2>
-              <span className="text-sm text-[#8b939c]">{compatibleProducts.length} result{compatibleProducts.length !== 1 ? 's' : ''}</span>
+              <span className="text-sm text-[#8b939c]">{compatResults.length} result{compatResults.length !== 1 ? 's' : ''}</span>
             </div>
-            {compatibleProducts.length === 0 ? (
+            
+            {loading ? (
+              <div className="bg-[#121416] border border-[#1e2124] rounded-lg p-8 text-center">
+                <p className="text-[#8b939c]">Loading...</p>
+              </div>
+            ) : compatResults.length === 0 ? (
               <div className="bg-[#121416] border border-[#1e2124] rounded-lg p-8 text-center">
                 <p className="text-[#8b939c]">No compatibility data found for this combination.</p>
                 <p className="text-sm text-[#555a61] mt-2">We only show verified compatibility - if it is not here, we have not confirmed it yet.</p>
               </div>
             ) : (
               <div className="space-y-4">
-                {compatibleProducts.map(({ product, edge, evidenceList }) => {
+                {compatResults.map(({ product, edge, evidenceList }) => {
                   const status = statusInfo[edge.status];
-                  const relationship = relationshipLabels[edge.relationshipType];
+                  const relationship = relationshipLabels[edge.relationship_type];
                   const isExpanded = expandedEvidence === edge.id;
-                  const isConflict = edge.relationshipType === 'CONFLICTS';
+                  const isConflict = edge.relationship_type === 'CONFLICTS';
                   return (
                     <div key={edge.id} className={`bg-[#121416] border rounded-lg overflow-hidden ${isConflict ? 'border-[rgba(156,74,74,0.3)]' : 'border-[#1e2124]'}`}>
                       <div className="p-4">
@@ -273,14 +272,16 @@ export default function CompatibilityPage() {
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
                               <span className={`px-2 py-0.5 text-xs font-semibold rounded ${status.bg} ${status.color} ${status.border} border`}>{status.label}</span>
-                              <span className={`px-2 py-0.5 text-xs font-semibold rounded ${isConflict ? 'bg-[rgba(156,74,74,0.1)] text-[#9c4a4a] border border-[rgba(156,74,74,0.3)]' : edge.relationshipType === 'REQUIRES_ADAPTER' ? 'bg-[rgba(212,165,91,0.1)] text-[#d4a55b] border border-[rgba(212,165,91,0.3)]' : 'bg-[rgba(74,156,109,0.1)] text-[#4a9c6d] border border-[rgba(74,156,109,0.3)]'}`}>{relationship.icon} {relationship.label}</span>
+                              <span className={`px-2 py-0.5 text-xs font-semibold rounded ${isConflict ? 'bg-[rgba(156,74,74,0.1)] text-[#9c4a4a] border border-[rgba(156,74,74,0.3)]' : edge.relationship_type === 'REQUIRES_ADAPTER' ? 'bg-[rgba(212,165,91,0.1)] text-[#d4a55b] border border-[rgba(212,165,91,0.3)]' : 'bg-[rgba(74,156,109,0.1)] text-[#4a9c6d] border border-[rgba(74,156,109,0.3)]'}`}>{relationship.icon} {relationship.label}</span>
                             </div>
-                            <Link href={product.urlSlug} className="font-rajdhani font-bold text-lg text-[#e8eaed] hover:text-[#a8b2bc] transition-colors">{product.brand} {product.name}</Link>
+                            <Link href={product.url_slug} className="font-rajdhani font-bold text-lg text-[#e8eaed] hover:text-[#a8b2bc] transition-colors">{product.brand} {product.name}</Link>
                             {edge.notes && <p className="text-sm text-[#8b939c] mt-1">{edge.notes}</p>}
                             {edge.requirements && <p className="text-sm text-[#d4a55b] mt-1">Requires: {edge.requirements}</p>}
-                            <p className="text-xs text-[#555a61] mt-2">Last verified: {edge.lastVerifiedDate}</p>
+                            <p className="text-xs text-[#555a61] mt-2">Last verified: {edge.last_verified_date}</p>
                           </div>
-                          <Link href={product.urlSlug} className="px-3 py-1.5 bg-[rgba(139,157,170,0.08)] border border-[#2a2d31] rounded text-sm text-[#a8b2bc] hover:border-[#5c6370] transition-colors whitespace-nowrap">View Product</Link>
+                          {product.has_product_page && (
+                            <Link href={product.url_slug} className="px-3 py-1.5 bg-[rgba(139,157,170,0.08)] border border-[#2a2d31] rounded text-sm text-[#a8b2bc] hover:border-[#5c6370] transition-colors whitespace-nowrap">View Product</Link>
+                          )}
                         </div>
                         {evidenceList.length > 0 && (
                           <button onClick={() => setExpandedEvidence(isExpanded ? null : edge.id)} className="mt-3 text-sm text-[#a8b2bc] hover:text-[#e8eaed] flex items-center gap-1">
@@ -295,12 +296,12 @@ export default function CompatibilityPage() {
                           <div className="space-y-3">
                             {evidenceList.map(ev => (
                               <div key={ev.id} className="flex items-start gap-3">
-                                <span className={`px-2 py-0.5 text-xs font-medium rounded ${ev.sourceType === 'manufacturer' ? 'bg-[rgba(74,156,109,0.1)] text-[#4a9c6d]' : ev.sourceType === 'community' ? 'bg-[rgba(91,159,212,0.1)] text-[#5b9fd4]' : 'bg-[rgba(139,147,156,0.1)] text-[#8b939c]'}`}>{ev.sourceType}</span>
+                                <span className={`px-2 py-0.5 text-xs font-medium rounded ${ev.source_type === 'manufacturer' ? 'bg-[rgba(74,156,109,0.1)] text-[#4a9c6d]' : ev.source_type === 'community' ? 'bg-[rgba(91,159,212,0.1)] text-[#5b9fd4]' : 'bg-[rgba(139,147,156,0.1)] text-[#8b939c]'}`}>{ev.source_type}</span>
                                 <div className="flex-1">
-                                  <p className="text-sm text-[#e8eaed]">{ev.shortQuote}</p>
+                                  <p className="text-sm text-[#e8eaed]">{ev.short_quote}</p>
                                   <div className="flex items-center gap-2 mt-1">
-                                    <a href={ev.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[#a8b2bc] hover:text-[#e8eaed]">{ev.sourceName}</a>
-                                    <span className="text-xs text-[#555a61]">Captured {ev.dateCaptured}</span>
+                                    <a href={ev.source_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#a8b2bc] hover:text-[#e8eaed]">{ev.source_name}</a>
+                                    <span className="text-xs text-[#555a61]">Captured {ev.date_captured}</span>
                                   </div>
                                 </div>
                               </div>
