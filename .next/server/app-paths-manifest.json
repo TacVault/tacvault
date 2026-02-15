@@ -1,3 +1,4 @@
 {
-  "/compatibility/page": "app/compatibility/page.js"
+  "/icon.png/route": "app/icon.png/route.js",
+  "/products/haley-strategic/d3crm/page": "app/products/haley-strategic/d3crm/page.js"
 }
