@@ -1,15 +1,25 @@
 {
   "pages": {
-    "/products/haley-strategic/d3crm/page": [
+    "/products/spiritus-systems/micro-fight-mk4/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/products/haley-strategic/d3crm/page.js"
+      "static/chunks/app/products/spiritus-systems/micro-fight-mk4/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/products/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/products/page.js"
+    ],
+    "/products/ferro-concepts/slickster/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/products/ferro-concepts/slickster/page.js"
     ]
   }
 }

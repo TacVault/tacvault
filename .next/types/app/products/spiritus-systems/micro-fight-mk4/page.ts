@@ -1,8 +1,8 @@
-// File: C:\Users\Elijah P\Desktop\tacvault\tacvault-site (1)\app\products\haley-strategic\d3crm\page.tsx
-import * as entry from '../../../../../../app/products/haley-strategic/d3crm/page.js'
+// File: C:\Users\Elijah P\Desktop\tacvault\tacvault-site (1)\app\products\spiritus-systems\micro-fight-mk4\page.tsx
+import * as entry from '../../../../../../app/products/spiritus-systems/micro-fight-mk4/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../../../app/products/haley-strategic/d3crm/page.js')
+type TEntry = typeof import('../../../../../../app/products/spiritus-systems/micro-fight-mk4/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

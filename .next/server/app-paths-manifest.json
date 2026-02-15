@@ -1,4 +1,6 @@
 {
   "/icon.png/route": "app/icon.png/route.js",
-  "/products/haley-strategic/d3crm/page": "app/products/haley-strategic/d3crm/page.js"
+  "/products/ferro-concepts/slickster/page": "app/products/ferro-concepts/slickster/page.js",
+  "/products/page": "app/products/page.js",
+  "/products/spiritus-systems/micro-fight-mk4/page": "app/products/spiritus-systems/micro-fight-mk4/page.js"
 }
