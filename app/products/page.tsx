@@ -10,8 +10,9 @@ export default function ProductsIndex() {
   ];
 
   const placards = [
-    { name: "Haley Strategic D3CRM Micro", price: "$140", badge: "Best Dual-Purpose", href: "/products/haley-strategic/d3crm" },
-  ];
+  { name: "Haley Strategic D3CRM Micro", price: "$140", badge: "Best Dual-Purpose", href: "/products/haley-strategic/d3crm" },
+  { name: "Spiritus Systems Micro Fight Mk4", price: "$75.95", badge: "Best Modular", href: "/products/spiritus-systems/micro-fight-mk4" },
+];
 
   return (
     <main className="min-h-screen bg-[#08090a] text-[#e8eaed]">
